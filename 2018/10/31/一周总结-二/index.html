@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="ChangL-Blog">
 <meta property="og:description" content="前言迟到了好久的总结。。。本部分为计算机网络。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-05T16:19:30.256Z">
+<meta property="og:updated_time" content="2018-11-05T16:57:32.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一周总结(二)">
 <meta name="twitter:description" content="前言迟到了好久的总结。。。本部分为计算机网络。">
@@ -344,7 +344,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-11-06 00:19:30" itemprop="dateModified" datetime="2018-11-06T00:19:30+08:00">2018-11-06</time>
+                <time title="修改时间：2018-11-06 00:57:32" itemprop="dateModified" datetime="2018-11-06T00:57:32+08:00">2018-11-06</time>
               
             
           </span>
@@ -385,7 +385,7 @@
 </ul>
 </li>
 <li>Consider an error-free 64-kbps satellite channel used to send 512-byte data frames in one direction, with very short acknowledgements coming back the other way. What is the maximum throughput for window sizes of 1, 7, 15, and 127? The earth-satellite propagation time is 270 msec<ul>
-<li>一个传输周期=T = 第一个帧的传输时延+第一个帧的传播时延+确认帧的传输时延+确认帧的传播时延<br>这里不考虑确认帧的传输时延，但考虑传播时延。计算得周期T为\(270<em>2+512Byte/64kbps=604ms\)。<br>发送一帧为64ms，因此需要604/64=9帧保持通道不空。每604ms发送(窗口值\</em>512Byte*8)bit,<br>注意这里的窗口值若超过9(如15、128)，吞吐量也只是最大值64kbps。</li>
+<li>一个传输周期T = 第一个帧的传输时延+第一个帧的传播时延+确认帧的传输时延+确认帧的传播时延<br>这里不考虑确认帧的传输时延，但考虑传播时延。计算得周期T为 \( 270*2+512Byte/64kbps=604ms \)。<br>发送一帧为64ms，因此需要604/64=9帧保持通道不空。每604ms发送(窗口值*512Byte*8)bit,<br>注意这里的窗口值若超过9(如15、128)，吞吐量也只是最大值64kbps。</li>
 </ul>
 </li>
 </ol>
@@ -397,24 +397,24 @@
 <li>selective repeat $$ M = 2^{n-1} -1 $$</li>
 </ul>
 </li>
-<li>Wait and Stop、 Go back N 和 Selective repeat总结<br><br>这三种实际上是发送窗口与接收窗口大小的区别。发送方将窗口里的帧挨个发送，如果收到nck或者<br>当计时器超时时未收到ack，就重新发送该号帧。发送方接收到AckR<sub>n</sub>，则表示AckR<sub>n</sub>之前的<br>帧已经被接收方收到。接收方将帧按号放入接收窗口，并发送ack，当接收到的帧与接收窗口当前<br>的号不同时，就返回nak，表明有帧未收到需重传。窗口大小与sequence number的bit位数有关。发送方维护一个Slast(\( S_n \))，<br>表明将要发送的帧，每发送完一帧后更新值+1，接收方维护Rnext(\( R_n \)),<br>每接收到一帧后更新值+1。<ol>
+<li>Wait and Stop、 Go back N 和 Selective repeat总结<br>这三种实际上是发送窗口与接收窗口大小的区别。发送方将窗口里的帧挨个发送，如果收到nck或者当计时器超时时未收到ack，就重新发送该号帧。发送方接收到AckR<sub>n</sub>，则表示AckR<sub>n</sub>之前的帧已经被接收方收到。接收方将帧按号放入接收窗口，并发送ack，当接收到的帧与接收窗口当前的号不同时，就返回nak，表明有帧未收到需重传。窗口大小与sequence number的bit位数有关。发送方维护一个Slast(\( S_n \))，表明将要发送的帧，每发送完一帧后更新值+1，接收方维护Rnext(\( R_n \)),每接收到一帧后更新值+1。<ol>
 <li>Wait-and-Stop      <ul>
 <li>发送方与接收方窗口大小均为1。</li>
-<li>发送方按照\( S_n \)发送帧，启动计时器，<br>并更新S<sub>n</sub>。发送方比较ack与S<sub>n</sub>确认帧被接收，可以发送下一帧，并停止计时器。当计时器超时，<br>发送方重新发送S<sub>n</sub>帧，并重新启动计时器。</li>
-<li>接收方没有计时器。每当接收到帧，就比较帧号与R<sub>n</sub>是否相等，若是则将该帧上传，<br>并更新R<sub>n</sub>，同时发送ackR<sub>n</sub>。</li>
-<li>这种方法效率较低。假设传播延时为τ sec，帧大小为L bits，带宽为r bit/sec，忽略control frame和传输延时<br>则它发送Lbits然后等待至少2τ+L/r sec。</li>
+<li>发送方按照S<sub>n</sub>发送帧，启动计时器，并更新S<sub>n</sub>。发送方比较ack与S<sub>n</sub>确认帧被接收，可以发送下一帧，并停止计时器。当计时器超时，发送方重新发送S<sub>n</sub>帧，并重新启动计时器。</li>
+<li>接收方没有计时器。每当接收到帧，就比较帧号与R<sub>n</sub>是否相等，若是则将该帧上传，并更新R<sub>n</sub>，同时发送ackR<sub>n</sub>。</li>
+<li>这种方法效率较低。假设传播延时为τ sec，帧大小为L bits，带宽为r bit/sec，忽略control frame和传输延时则它发送Lbits然后等待至少2τ+L/r sec。</li>
 </ul>
 </li>
 <li>Go-Back-N<ul>
 <li>发送方的窗口为小于2<sup>m</sup>(不能等于)，接收方的窗口大小为1。m为sequence number 的bit位数。</li>
-<li>发送方需要维护S<sub>f</sub>，表示最后发送的帧号。S<sub>f</sub>与S<sub>n</sub>的差要小于窗口大小。<br>发送方发送帧后，更新S<sub>n</sub>，如果此时计时器未启动，则启动计时器。发送方接收到ack后要判断ack在发送窗口中，然后更新<br>S<sub>f</sub>为ack+1，并停止计时器。如果计时器超时，则重新启动计时器，并重新发送S<sub>f</sub>与S<sub>n</sub>之间的帧。</li>
+<li>发送方需要维护S<sub>f</sub>，表示最后发送的帧号。S<sub>f</sub>与S<sub>n</sub>的差要小于窗口大小。发送方发送帧后，更新S<sub>n</sub>，如果此时计时器未启动，则启动计时器。发送方接收到ack后要判断ack在发送窗口中，然后更新S<sub>f</sub>为ack+1，并停止计时器。如果计时器超时，则重新启动计时器，并重新发送S<sub>f</sub>与S<sub>n</sub>之间的帧。</li>
 <li>接收方与Wait-and-Stop相同。</li>
 </ul>
 </li>
 <li>Selective Repeat<ul>
 <li>发送方与接收方的窗口最大为2<sup>m-1</sup></li>
-<li>发送方每个帧都有一个计时器。每发送一个帧，更新S<sub>n</sub>，并启动对应的计时器Timer<sub>n</sub>。<br>如果接收到nak在窗口范围(<sub>f</sub>到<sub>n</sub>)内，则重新发送nak号帧，并启动timer<sub>nak</sub>。如果接收到<br>的ack在窗口范围内，则停止S<sub>f</sub>到ack的计时器，并更新S<sub>f</sub>为ack。当某个计时器<br>超时，则重新启动该号计时器，并发送该号帧。</li>
-<li>接收方需要维护NakSent(bool，初始为false，表示未发送Nak)。需要维护一个slot数组(大小为窗口大小，初始为false)。<br>维护一个AckNeeded(bool，初始为false，表示不需要发送ack)接收到的帧号不为R<sub>n</sub>,并且NakSent为false，<br>则发送NakR<sub>n</sub>，并置NakSent为true。如果接收到的帧号seqNo在窗口中，并且slot[seqNo]为false(未标记)，则保存该帧，<br>并且标记slot[seqNo]为true。接着若slot[R<sub>n</sub>]为true，则上传R<sub>n</sub>号帧给上一层，置AckNeeded为true。并使R<sub>n</sub>+1，接着判断。<br>接下来，判断AckNeeded，若为true，则发送AckR<sub>n</sub>，并置AckNeeded和NakSent为false。</li>
+<li>发送方每个帧都有一个计时器。每发送一个帧，更新S<sub>n</sub>，并启动对应的计时器Timer<sub>n</sub>。如果接收到nak在窗口范围(<sub>f</sub>到<sub>n</sub>)内，则重新发送nak号帧，并启动timer<sub>nak</sub>。如果接收到的ack在窗口范围内，则停止S<sub>f</sub>到ack的计时器，并更新S<sub>f</sub>为ack。当某个计时器超时，则重新启动该号计时器，并发送该号帧。</li>
+<li>接收方需要维护NakSent(bool，初始为false，表示未发送Nak)。需要维护一个slot数组(大小为窗口大小，初始为false)。维护一个AckNeeded(bool，初始为false，表示不需要发送ack)接收到的帧号不为R<sub>n</sub>,并且NakSent为false，则发送NakR<sub>n</sub>，并置NakSent为true。如果接收到的帧号seqNo在窗口中，并且slot[seqNo]为false(未标记)，则保存该帧，并且标记slot[seqNo]为true。接着若slot[R<sub>n</sub>]为true，则上传R<sub>n</sub>号帧给上一层，置AckNeeded为true。并使R<sub>n</sub>+1，接着判断。接下来，判断AckNeeded，若为true，则发送AckR<sub>n</sub>，并置AckNeeded和NakSent为false。</li>
 </ul>
 </li>
 </ol>
