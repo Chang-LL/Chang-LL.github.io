@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+  <meta name="description" content="前言迟到了好久的总结。。。本部分为计算机网络。">
 <meta name="keywords" content="server">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一周总结(一)">
-<meta property="og:url" content="http://yoursite.com/2018/10/20/一周总结-一/index.html">
+<meta property="og:title" content="一周总结(二)">
+<meta property="og:url" content="http://yoursite.com/2018/10/31/一周总结-二/index.html">
 <meta property="og:site_name" content="ChangL-Blog">
-<meta property="og:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta property="og:description" content="前言迟到了好久的总结。。。本部分为计算机网络。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-30T11:10:49.371Z">
+<meta property="og:updated_time" content="2018-11-05T16:19:30.256Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一周总结(一)">
-<meta name="twitter:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta name="twitter:title" content="一周总结(二)">
+<meta name="twitter:description" content="前言迟到了好久的总结。。。本部分为计算机网络。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/20/一周总结-一/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/31/一周总结-二/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>一周总结(一) | ChangL-Blog</title>
+  <title>一周总结(二) | ChangL-Blog</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/一周总结-一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/一周总结-二/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chang L">
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一周总结(一)
+          <h1 class="post-title" itemprop="name headline">一周总结(二)
               
             
           </h1>
@@ -327,7 +327,7 @@
                 
               
 
-              <time title="创建时间：2018-10-20 15:13:17" itemprop="dateCreated datePublished" datetime="2018-10-20T15:13:17+08:00">2018-10-20</time>
+              <time title="创建时间：2018-10-31 21:03:23" itemprop="dateCreated datePublished" datetime="2018-10-31T21:03:23+08:00">2018-10-31</time>
             
 
             
@@ -344,7 +344,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-30 19:10:49" itemprop="dateModified" datetime="2018-10-30T19:10:49+08:00">2018-10-30</time>
+                <time title="修改时间：2018-11-06 00:19:30" itemprop="dateModified" datetime="2018-11-06T00:19:30+08:00">2018-11-06</time>
               
             
           </span>
@@ -377,93 +377,47 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。</p>
-<a id="more"></a>
-<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><ol>
-<li><p>osi模型</p>
-<ol>
-<li>Physica：how to transmit signal (Coding) (bit)</li>
-<li>Datalink: two party communication (Ethernet) (frame)<br>&emsp;&emsp;<br>  dividing the transmitted bit stream into frames </li>
-<li>Network: Routing,Addressing (IP)(packet)<br>&emsp;&emsp;<br>  Determining which route through the subnet to use</li>
-<li>Transport: End-to-end communciation (TCP)(segment)</li>
-<li>Session: Establish/manage connection (SPDU)</li>
-<li>Presentation: ASCII Text,Sound (PPDU)</li>
-<li>Application: File transfer,Email,Remote Login (APDU)</li>
-</ol>
-</li>
-<li><p>波特率(baud rate)与比特率(bit rate)</p>
-<ol>
-<li>比特率：通信线路(或系统)单位时间(每秒)内传输的信息量，即每秒能传输的二进制位数，通常用Rb表示，<br>  其单位是比特/秒(bit/s或b/s，英文缩略语为bps)。当系统以每秒50个二进制符号传输时，信息速率为50bit/s，信号速率也为50Bd(波特)。</li>
-<li>波特率： 通信线路(或系统)单位时间(每秒)内传输的码元(脉冲)个数；或者表示信号调制过程中，单位时间内调制信号波形的变换次数，<br>  通常用RB表示，单位是波特(Bd或Baud，前者规范)。如果每秒传输1个码元就称为1Bd；如果1码元的时间长短为200ms，则每秒可传输5个码元，那么码元速率(波特率)就是5Bd。<br>   码元(code cell)是携带信息的数字单位，是指在数字信道中传送数字信号的一个波形符号，也即“时间轴上的一个信号编码单元”。码元可能是二进制的，也可能是多进制的。</li>
-<li>转换关系：Rb=RB*log<sub>2</sub>M<br>&emsp; M表示码元的进制</li>
-<li>How long was a bit on the original 802.3 standard in meters? Use a transmission speed of 10 Mbps and assume the propagation speed in coax is 2/3 the speed of light in vacuum.<br>&emsp;<br> 计算出bit的传播时间再乘以速率：1s/10Mbps*c*2/3=20m</li>
-</ol>
-</li>
-<li><p>best-case delay = 请求和应答总路程/光速</p>
-<ul>
-<li>A client-server system uses a satellite network, with the satellite at a height of 40,000 km. What is the best-case delay in response to a request?<br>&emsp;<br>由于请求和应答都必须通过卫星，因此传输总路径长度为 160,000 千米。在空气 和真空中的光速为 300，000 公里/秒， 因此最佳的传播延迟为 160,000/300，000 秒，约 533 msec。 </li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>迟到了好久的总结。。。本部分为计算机网络。<br><a id="more"></a></p>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><ol>
+<li>信道利用率<br>$$ Efficiency = \frac{Transmission\ time\ of\ packet}<br>{Transmission\ time\ of\ packet + 2 * Propagation\ delay} $$<ol>
+<li>A channel has a bit rate of 4 kbps and one-way propagation delay of 20 ms. The channel uses stop and wait protocol. The transmission time of the acknowledgement frame is negligible. To get a channel efficiency of at least 50%, the minimum frame size should be: <ul>
+<li>这道题中可以设传输时间为x，由上述公式，得：<br>$$ 0.5 = \frac{x}{x+2*20*10^{-3}} $$<br>得x=\( 40*10^{-3}\)，再结合bit rate为4 kbps得到结果为160bits</li>
 </ul>
 </li>
-<li>A collection of five routers is to be connected in a point-to-point subnet. Between each pair of routers, the designers may put a high-speed line, a<br>medium-speed line, a low-speed line, or no line. If it takes 100 ms of computer time to generate and inspect each topology, how long will it take to inspect all of them?<br>&emsp; 将路由器称为 A，B，C，D 和 E.<br> 则有 10 条可能的线路；AB, AC, AD, AE, BC, BD, BE, CD, CE,和 DE 每条线路有 4 种可能性(3 速度或者不是线路)，拓扑的总数为 410 = 1,048,576。  检查每个拓扑需要 100 ms，全部检查总共需要 104,857. 6 秒，或者稍微超过 29 个小时。     </li>
-<li><p>面向连接服务(connection-oriented service)与无连接服务(connection-less service)</p>
-<p>1.面向连接服务：数据传输过程前必须经过建立连接、维护连接和释放连接的3个过 程；在数据传输过程中，各分组不需要携带目的节点的地址。面向连接服务的传输连接类似于一个通信管道，<br>发送者在一端放入数据，接受者从另一端取出数据。面向连接数据传输的收发数据顺序不变，因此传输的可<br>靠性好，但需通信开始前的链接开销，协议复杂，通信效率不高。<br><br>如virtual circuit service，电话系统，tcp</p>
-<ol start="2">
-<li>无连接服务:就是通信双方不需要事先建立一条通信线路，而是把每个带有目的地址的包（报文分组）送到线路上，由系统选定路线 进行传输。IP、UDP协议就是一种无连接协议，邮政系统是一个无连接的模式。 </li>
-</ol>
-</li>
-<li><p>多播(broadcasting)、广播(unicasting)与点对点(point-to-point)</p>
-</li>
-<li><p>信道传输速率</p>
-<ul>
-<li>Maximum signal rate for a channel (No Noise)<br>  -Nyquist Theorem: Bandwidth = W, Singal rate &lt;= 2 W (baud)</li>
-<li>Bilevel Encoding: Data rate = 2 * Bandwidth  (bps)</li>
-<li>Multilevel(M) Encoding:<br>  -Data rate = 2 * Bandwidth * log<sub>2</sub>M  (bps)</li>
-<li>Shannon’s Theorem<ul>
-<li>Bandwidth = H (Hz),  Signal-to-noise ratio = S/N<br><br>Maximum Data Rate = H * log<sub>2</sub>(1+S/N) (bps)无噪音情况下速率任意高</li>
-</ul>
-</li>
-<li>Decibels (dB): 10log<sub>10</sub>(S/N)</li>
-</ul>
-</li>
-<li><p>fdm带宽=信号频率 * 信号数量 + (信号数量-1) * 保护带宽</p>
-</li>
-<li><p>CDMA译码</p>
-<ol>
-<li>resulting chip sequence = chip sequence of A + chip sequence of B + …</li>
-<li>result = resulting chip sequence * chip sequence /len(sequence)<ul>
-<li>result = 0: silence</li>
-<li>result = 1: sent bit 1</li>
-<li>result = -1: sent bit 0</li>
+<li>Consider an error-free 64-kbps satellite channel used to send 512-byte data frames in one direction, with very short acknowledgements coming back the other way. What is the maximum throughput for window sizes of 1, 7, 15, and 127? The earth-satellite propagation time is 270 msec<ul>
+<li>一个传输周期=T = 第一个帧的传输时延+第一个帧的传播时延+确认帧的传输时延+确认帧的传播时延<br>这里不考虑确认帧的传输时延，但考虑传播时延。计算得周期T为\(270<em>2+512Byte/64kbps=604ms\)。<br>发送一帧为64ms，因此需要604/64=9帧保持通道不空。每604ms发送(窗口值\</em>512Byte*8)bit,<br>注意这里的窗口值若超过9(如15、128)，吞吐量也只是最大值64kbps。</li>
 </ul>
 </li>
 </ol>
 </li>
-<li><p>一些传输标准</p>
-<ul>
-<li>CCTT 2.048 Mbps标准：32个8位数据样本组成一个125us的基本帧，<br>30个传信息，2个传控制信号。</li>
-<li>DPCM(差分脉码调制)，传播的二进制数为相对差值位</li>
-<li>Delta modulation(增量调制) 位数为1</li>
+<li>T1速率125us传送193位的帧</li>
+<li>CRC的checksum是多项式的最高次幂</li>
+<li>sequence number(n) 与maximum number of outstanding sending frames(M)的关系<ul>
+<li>go back N: $$ M = 2^n - 1 $$</li>
+<li>selective repeat $$ M = 2^{n-1} -1 $$</li>
 </ul>
 </li>
-<li><p>T1 carrier与E1 carrier</p>
-<ul>
-<li>T1为1.544Mbps，T1载波是把24个话音信道多路复用在一条高速信道上，每个信道包含7位的数据和1位的控制信令位，<br>此外加入一位帧同步位组成基本帧。 其中，用户的开销为24×1（控制位）+1（基本帧）=25 b 总开销为：（7+1）×24+1=193 b 因此，用户的开销所占的百分比为：25/193×100%≈13%</li>
-<li>E1载波是一种2.048Mbps速率的PCM载波。采用同步时分复用技术将30个话音信道（64K）和２个控制信道（16K）复合在一条2.048Mb/s的高速信道上。<br>  【帧结构】：每一帧开始处有8位作同步用,中间有8位用作信令,在组织30路8位数据,全帧包含256位,且每一帧用 125us时间传送。(通常我们把E1载波的一个帧分为32个时隙，一个时隙为8个bit；其中时隙0和时隙15是传输控制信令用，所以一条E1可以传30路话音。这里要注意：在路由器上的E1是不能划分时隙的，只能做2M线使用）。<ol>
-<li>E1载波支持的数据传输速率为2.048Mbps （即 256bit/125us=2.048Mbps)</li>
-<li>每个通道支持 的传输速度（或数据速率）为 64Kb/s 因为每个时隙在E1帧中占8bit，8*8k=64k，即一条E1中含有32个64K，则 2.048Mbps/32=64Kb/s</li>
-<li>E1载波开销所占比例为6.25% 。因为一帧32个时隙中，30个用于用户数据，2个用于开销。所以开销所占比例=2/32=6.25%</li>
+<li>Wait and Stop、 Go back N 和 Selective repeat总结<br><br>这三种实际上是发送窗口与接收窗口大小的区别。发送方将窗口里的帧挨个发送，如果收到nck或者<br>当计时器超时时未收到ack，就重新发送该号帧。发送方接收到AckR<sub>n</sub>，则表示AckR<sub>n</sub>之前的<br>帧已经被接收方收到。接收方将帧按号放入接收窗口，并发送ack，当接收到的帧与接收窗口当前<br>的号不同时，就返回nak，表明有帧未收到需重传。窗口大小与sequence number的bit位数有关。发送方维护一个Slast(\( S_n \))，<br>表明将要发送的帧，每发送完一帧后更新值+1，接收方维护Rnext(\( R_n \)),<br>每接收到一帧后更新值+1。<ol>
+<li>Wait-and-Stop      <ul>
+<li>发送方与接收方窗口大小均为1。</li>
+<li>发送方按照\( S_n \)发送帧，启动计时器，<br>并更新S<sub>n</sub>。发送方比较ack与S<sub>n</sub>确认帧被接收，可以发送下一帧，并停止计时器。当计时器超时，<br>发送方重新发送S<sub>n</sub>帧，并重新启动计时器。</li>
+<li>接收方没有计时器。每当接收到帧，就比较帧号与R<sub>n</sub>是否相等，若是则将该帧上传，<br>并更新R<sub>n</sub>，同时发送ackR<sub>n</sub>。</li>
+<li>这种方法效率较低。假设传播延时为τ sec，帧大小为L bits，带宽为r bit/sec，忽略control frame和传输延时<br>则它发送Lbits然后等待至少2τ+L/r sec。</li>
+</ul>
+</li>
+<li>Go-Back-N<ul>
+<li>发送方的窗口为小于2<sup>m</sup>(不能等于)，接收方的窗口大小为1。m为sequence number 的bit位数。</li>
+<li>发送方需要维护S<sub>f</sub>，表示最后发送的帧号。S<sub>f</sub>与S<sub>n</sub>的差要小于窗口大小。<br>发送方发送帧后，更新S<sub>n</sub>，如果此时计时器未启动，则启动计时器。发送方接收到ack后要判断ack在发送窗口中，然后更新<br>S<sub>f</sub>为ack+1，并停止计时器。如果计时器超时，则重新启动计时器，并重新发送S<sub>f</sub>与S<sub>n</sub>之间的帧。</li>
+<li>接收方与Wait-and-Stop相同。</li>
+</ul>
+</li>
+<li>Selective Repeat<ul>
+<li>发送方与接收方的窗口最大为2<sup>m-1</sup></li>
+<li>发送方每个帧都有一个计时器。每发送一个帧，更新S<sub>n</sub>，并启动对应的计时器Timer<sub>n</sub>。<br>如果接收到nak在窗口范围(<sub>f</sub>到<sub>n</sub>)内，则重新发送nak号帧，并启动timer<sub>nak</sub>。如果接收到<br>的ack在窗口范围内，则停止S<sub>f</sub>到ack的计时器，并更新S<sub>f</sub>为ack。当某个计时器<br>超时，则重新启动该号计时器，并发送该号帧。</li>
+<li>接收方需要维护NakSent(bool，初始为false，表示未发送Nak)。需要维护一个slot数组(大小为窗口大小，初始为false)。<br>维护一个AckNeeded(bool，初始为false，表示不需要发送ack)接收到的帧号不为R<sub>n</sub>,并且NakSent为false，<br>则发送NakR<sub>n</sub>，并置NakSent为true。如果接收到的帧号seqNo在窗口中，并且slot[seqNo]为false(未标记)，则保存该帧，<br>并且标记slot[seqNo]为true。接着若slot[R<sub>n</sub>]为true，则上传R<sub>n</sub>号帧给上一层，置AckNeeded为true。并使R<sub>n</sub>+1，接着判断。<br>接下来，判断AckNeeded，若为true，则发送AckR<sub>n</sub>，并置AckNeeded和NakSent为false。</li>
+</ul>
+</li>
 </ol>
-</li>
-</ul>
-</li>
-<li>The cable between toll office and the end office of telephone company are known as the <em>trunk</em></li>
-<li>data link layer传输bit，每五个1后面自动加一个0<ul>
-<li>传输bit：0111101111101111110，实际bit：011110111110011111010</li>
-</ul>
-</li>
-<li>reminder of M(x) dividing G(x)<ul>
-<li>先在M(x)后补0(个数为G(x)的最高次+1)，再做多项式除法</li>
-</ul>
 </li>
 </ol>
 
@@ -493,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/11/Linux/" rel="next" title="服务器相关教程">
-                <i class="fa fa-chevron-left"></i> 服务器相关教程
+              <a href="/2018/10/20/一周总结-一/" rel="next" title="一周总结(一)">
+                <i class="fa fa-chevron-left"></i> 一周总结(一)
               </a>
             
           </div>
@@ -502,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/31/一周总结-二/" rel="prev" title="一周总结(二)">
-                一周总结(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络"><span class="nav-number"></span> <span class="nav-text">计算机网络</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机网络"><span class="nav-number">2.</span> <span class="nav-text">计算机网络</span></a></li></ol></div>
             
 
           </div>
@@ -768,7 +718,65 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -787,41 +795,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 
