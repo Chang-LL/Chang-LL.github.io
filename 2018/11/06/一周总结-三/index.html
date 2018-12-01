@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+  <meta name="description" content="前言这次总结主要是操作系统方面，包括操作系统概述和结构。">
 <meta name="keywords" content="server">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一周总结(一)">
-<meta property="og:url" content="http://yoursite.com/2018/10/20/一周总结-一/index.html">
+<meta property="og:title" content="一周总结(三)">
+<meta property="og:url" content="http://yoursite.com/2018/11/06/一周总结-三/index.html">
 <meta property="og:site_name" content="ChangL-Blog">
-<meta property="og:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta property="og:description" content="前言这次总结主要是操作系统方面，包括操作系统概述和结构。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-30T11:10:49.371Z">
+<meta property="og:updated_time" content="2018-12-01T09:50:07.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一周总结(一)">
-<meta name="twitter:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta name="twitter:title" content="一周总结(三)">
+<meta name="twitter:description" content="前言这次总结主要是操作系统方面，包括操作系统概述和结构。">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/20/一周总结-一/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/06/一周总结-三/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>一周总结(一) | ChangL-Blog</title>
+  <title>一周总结(三) | ChangL-Blog</title>
   
 
 
@@ -285,7 +285,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/一周总结-一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/06/一周总结-三/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chang L">
@@ -302,7 +302,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一周总结(一)
+          <h1 class="post-title" itemprop="name headline">一周总结(三)
               
             
           </h1>
@@ -327,7 +327,7 @@
                 
               
 
-              <time title="创建时间：2018-10-20 15:13:17" itemprop="dateCreated datePublished" datetime="2018-10-20T15:13:17+08:00">2018-10-20</time>
+              <time title="创建时间：2018-11-06 20:14:54" itemprop="dateCreated datePublished" datetime="2018-11-06T20:14:54+08:00">2018-11-06</time>
             
 
             
@@ -344,7 +344,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-30 19:10:49" itemprop="dateModified" datetime="2018-10-30T19:10:49+08:00">2018-10-30</time>
+                <time title="修改时间：2018-12-01 17:50:07" itemprop="dateModified" datetime="2018-12-01T17:50:07+08:00">2018-12-01</time>
               
             
           </span>
@@ -377,94 +377,38 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。</p>
-<a id="more"></a>
-<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><ol>
-<li><p>osi模型</p>
-<ol>
-<li>Physica：how to transmit signal (Coding) (bit)</li>
-<li>Datalink: two party communication (Ethernet) (frame)<br>&emsp;&emsp;<br>  dividing the transmitted bit stream into frames </li>
-<li>Network: Routing,Addressing (IP)(packet)<br>&emsp;&emsp;<br>  Determining which route through the subnet to use</li>
-<li>Transport: End-to-end communciation (TCP)(segment)</li>
-<li>Session: Establish/manage connection (SPDU)</li>
-<li>Presentation: ASCII Text,Sound (PPDU)</li>
-<li>Application: File transfer,Email,Remote Login (APDU)</li>
-</ol>
-</li>
-<li><p>波特率(baud rate)与比特率(bit rate)</p>
-<ol>
-<li>比特率：通信线路(或系统)单位时间(每秒)内传输的信息量，即每秒能传输的二进制位数，通常用Rb表示，<br>  其单位是比特/秒(bit/s或b/s，英文缩略语为bps)。当系统以每秒50个二进制符号传输时，信息速率为50bit/s，信号速率也为50Bd(波特)。</li>
-<li>波特率： 通信线路(或系统)单位时间(每秒)内传输的码元(脉冲)个数；或者表示信号调制过程中，单位时间内调制信号波形的变换次数，<br>  通常用RB表示，单位是波特(Bd或Baud，前者规范)。如果每秒传输1个码元就称为1Bd；如果1码元的时间长短为200ms，则每秒可传输5个码元，那么码元速率(波特率)就是5Bd。<br>   码元(code cell)是携带信息的数字单位，是指在数字信道中传送数字信号的一个波形符号，也即“时间轴上的一个信号编码单元”。码元可能是二进制的，也可能是多进制的。</li>
-<li>转换关系：Rb=RB*log<sub>2</sub>M<br>&emsp; M表示码元的进制</li>
-<li>How long was a bit on the original 802.3 standard in meters? Use a transmission speed of 10 Mbps and assume the propagation speed in coax is 2/3 the speed of light in vacuum.<br>&emsp;<br> 计算出bit的传播时间再乘以速率：1s/10Mbps*c*2/3=20m</li>
-</ol>
-</li>
-<li><p>best-case delay = 请求和应答总路程/光速</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次总结主要是操作系统方面，包括操作系统概述和结构。</p>
+<a id="more"></a> 
+<h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><ol>
+<li>计算机系统包括四部分：硬件，操作系统，应用程序，用户</li>
+<li><p>操作系统概念</p>
 <ul>
-<li>A client-server system uses a satellite network, with the satellite at a height of 40,000 km. What is the best-case delay in response to a request?<br>&emsp;<br>由于请求和应答都必须通过卫星，因此传输总路径长度为 160,000 千米。在空气 和真空中的光速为 300，000 公里/秒， 因此最佳的传播延迟为 160,000/300，000 秒，约 533 msec。 </li>
+<li>从计算机系统组成观点：操作系统是系统软件 </li>
+<li>从用户观点：操作系统是用户与计算机硬件之间接口，提供命令级接口(键盘或鼠标)与程序级接口(system calls) </li>
+<li>从系统观点：操作系统是计算机系统资源的管理者</li>
+<li>从软件分层、扩充机器的观点：操作系统是扩充裸机的第一层系统软件</li>
+<li>操作系统是一组有效控制和管理计算机各种硬件和软件资源，合理的组织计 算机的工作流程 ，以及方便用户的程序的集合。 </li>
 </ul>
 </li>
-<li>A collection of five routers is to be connected in a point-to-point subnet. Between each pair of routers, the designers may put a high-speed line, a<br>medium-speed line, a low-speed line, or no line. If it takes 100 ms of computer time to generate and inspect each topology, how long will it take to inspect all of them?<br>&emsp; 将路由器称为 A，B，C，D 和 E.<br> 则有 10 条可能的线路；AB, AC, AD, AE, BC, BD, BE, CD, CE,和 DE 每条线路有 4 种可能性(3 速度或者不是线路)，拓扑的总数为 410 = 1,048,576。  检查每个拓扑需要 100 ms，全部检查总共需要 104,857. 6 秒，或者稍微超过 29 个小时。     </li>
-<li><p>面向连接服务(connection-oriented service)与无连接服务(connection-less service)</p>
-<p>1.面向连接服务：数据传输过程前必须经过建立连接、维护连接和释放连接的3个过 程；在数据传输过程中，各分组不需要携带目的节点的地址。面向连接服务的传输连接类似于一个通信管道，<br>发送者在一端放入数据，接受者从另一端取出数据。面向连接数据传输的收发数据顺序不变，因此传输的可<br>靠性好，但需通信开始前的链接开销，协议复杂，通信效率不高。<br><br>如virtual circuit service，电话系统，tcp</p>
-<ol start="2">
-<li>无连接服务:就是通信双方不需要事先建立一条通信线路，而是把每个带有目的地址的包（报文分组）送到线路上，由系统选定路线 进行传输。IP、UDP协议就是一种无连接协议，邮政系统是一个无连接的模式。 </li>
-</ol>
+<li><p>硬件引起中断(interrupt)，软件引发异常(exception和陷入trap)</p>
 </li>
-<li><p>多播(broadcasting)、广播(unicasting)与点对点(point-to-point)</p>
-</li>
-<li><p>信道传输速率</p>
+<li><p>特权指令与非特权指令</p>
 <ul>
-<li>Maximum signal rate for a channel (No Noise)<br>  -Nyquist Theorem: Bandwidth = W, Singal rate &lt;= 2 W (baud)</li>
-<li>Bilevel Encoding: Data rate = 2 * Bandwidth  (bps)</li>
-<li>Multilevel(M) Encoding:<br>  -Data rate = 2 * Bandwidth * log<sub>2</sub>M  (bps)</li>
-<li>Shannon’s Theorem<ul>
-<li>Bandwidth = H (Hz),  Signal-to-noise ratio = S/N<br><br>Maximum Data Rate = H * log<sub>2</sub>(1+S/N) (bps)无噪音情况下速率任意高</li>
+<li>特权指令：不允许用户程序中直接使用的指令。例如：I/O指令、设置时钟、 置控制寄存器，关中断等指令都是特权指令。 </li>
+<li>非特权指令：用户程序中所使用的指令。</li>
 </ul>
 </li>
-<li>Decibels (dB): 10log<sub>10</sub>(S/N)</li>
-</ul>
-</li>
-<li><p>fdm带宽=信号频率 * 信号数量 + (信号数量-1) * 保护带宽</p>
-</li>
-<li><p>CDMA译码</p>
-<ol>
-<li>resulting chip sequence = chip sequence of A + chip sequence of B + …</li>
-<li>result = resulting chip sequence * chip sequence /len(sequence)<ul>
-<li>result = 0: silence</li>
-<li>result = 1: sent bit 1</li>
-<li>result = -1: sent bit 0</li>
-</ul>
-</li>
-</ol>
-</li>
-<li><p>一些传输标准</p>
+<li><p>用户模式与内核模式</p>
 <ul>
-<li>CCTT 2.048 Mbps标准：32个8位数据样本组成一个125us的基本帧，<br>30个传信息，2个传控制信号。</li>
-<li>DPCM(差分脉码调制)，传播的二进制数为相对差值位</li>
-<li>Delta modulation(增量调制) 位数为1</li>
+<li>用户模式(User mode，用户态)：执行用户程序时<br>  只可以访问属于它的存储空间和普通寄存器，只能执行普通指令，使用用户栈</li>
+<li>内核模式(kernel mode or monitor mode or system mode or supervisor mode or privileged mode管态、核心态、系统态、特权模式)执行操作系统程序时<br>  能够访问所有系统资源，执行特权指令，运行的是操作系统内核程序，使用内核栈</li>
 </ul>
 </li>
-<li><p>T1 carrier与E1 carrier</p>
-<ul>
-<li>T1为1.544Mbps，T1载波是把24个话音信道多路复用在一条高速信道上，每个信道包含7位的数据和1位的控制信令位，<br>此外加入一位帧同步位组成基本帧。 其中，用户的开销为24×1（控制位）+1（基本帧）=25 b 总开销为：（7+1）×24+1=193 b 因此，用户的开销所占的百分比为：25/193×100%≈13%</li>
-<li>E1载波是一种2.048Mbps速率的PCM载波。采用同步时分复用技术将30个话音信道（64K）和２个控制信道（16K）复合在一条2.048Mb/s的高速信道上。<br>  【帧结构】：每一帧开始处有8位作同步用,中间有8位用作信令,在组织30路8位数据,全帧包含256位,且每一帧用 125us时间传送。(通常我们把E1载波的一个帧分为32个时隙，一个时隙为8个bit；其中时隙0和时隙15是传输控制信令用，所以一条E1可以传30路话音。这里要注意：在路由器上的E1是不能划分时隙的，只能做2M线使用）。<ol>
-<li>E1载波支持的数据传输速率为2.048Mbps （即 256bit/125us=2.048Mbps)</li>
-<li>每个通道支持 的传输速度（或数据速率）为 64Kb/s 因为每个时隙在E1帧中占8bit，8*8k=64k，即一条E1中含有32个64K，则 2.048Mbps/32=64Kb/s</li>
-<li>E1载波开销所占比例为6.25% 。因为一帧32个时隙中，30个用于用户数据，2个用于开销。所以开销所占比例=2/32=6.25%</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>The cable between toll office and the end office of telephone company are known as the <em>trunk</em></li>
-<li>data link layer传输bit，每五个1后面自动加一个0<ul>
-<li>传输bit：0111101111101111110，实际bit：011110111110011111010</li>
-</ul>
-</li>
-<li>reminder of M(x) dividing G(x)<ul>
-<li>先在M(x)后补0(个数为G(x)的最高次+1)，再做多项式除法</li>
-</ul>
-</li>
+<li>linux系统是一个 multi-user time-sharing system</li>
+<li>微内核(Microkernel)比宏内核(Monolithic Kernels Structure)相比，使得系统更加安全可靠，但效率降低。</li>
+<li>批处理的缺点：缺乏交互</li>
+<li>启动后第一个运行的程序：bootstrap program</li>
+<li>system call是os给用户程序提供的接口</li>
 </ol>
 
       
@@ -493,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/11/Linux/" rel="next" title="服务器相关教程">
-                <i class="fa fa-chevron-left"></i> 服务器相关教程
+              <a href="/2018/10/31/一周总结-二/" rel="next" title="一周总结(二)">
+                <i class="fa fa-chevron-left"></i> 一周总结(二)
               </a>
             
           </div>
@@ -503,8 +447,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/31/一周总结-二/" rel="prev" title="一周总结(二)">
-                一周总结(二) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/01/自动登录脚本/" rel="prev" title="自动登录脚本">
+                自动登录脚本 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -617,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络"><span class="nav-number"></span> <span class="nav-text">计算机网络</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-number">2.</span> <span class="nav-text">操作系统</span></a></li></ol></div>
             
 
           </div>

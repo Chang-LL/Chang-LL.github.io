@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="ChangL-Blog">
 <meta property="og:description" content="引言之前购买了个服务器，捣鼓了几个月后被封了。。。因此本篇记录了新建服务器中配置ssh，git，flask等相关操作，以备后用很多地方比较简略，欢迎讨论">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-17T07:26:05.617Z">
+<meta property="og:updated_time" content="2018-11-07T02:22:48.005Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="服务器相关教程">
 <meta name="twitter:description" content="引言之前购买了个服务器，捣鼓了几个月后被封了。。。因此本篇记录了新建服务器中配置ssh，git，flask等相关操作，以备后用很多地方比较简略，欢迎讨论">
@@ -344,7 +344,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-17 15:26:05" itemprop="dateModified" datetime="2018-10-17T15:26:05+08:00">2018-10-17</time>
+                <time title="修改时间：2018-11-07 10:22:48" itemprop="dateModified" datetime="2018-11-07T10:22:48+08:00">2018-11-07</time>
               
             
           </span>
@@ -425,7 +425,7 @@
 </code></pre></li>
 <li><p>配置系统自启动</p>
 <ol>
-<li><figure class="highlight vim"><figcaption><span>/etc/systemd/system/shadowsocks.service```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">2</span>. 添加内容：</span><br><span class="line">```ini</span><br><span class="line">    [Unit]</span><br><span class="line">    Description=Shadowsocks</span><br><span class="line"></span><br><span class="line">    [Service]</span><br><span class="line">    TimeoutStartSec=<span class="number">0</span></span><br><span class="line">    ExecStart=/usr/bin/ssserver -<span class="keyword">c</span> /etc/shadowsocks.json</span><br><span class="line"></span><br><span class="line">    [Install]</span><br><span class="line">    WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<li><figure class="highlight vim"><figcaption><span>/etc/systemd/system/shadowsocks.service ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">2</span>. 添加内容：</span><br><span class="line">```ini</span><br><span class="line">    [Unit]</span><br><span class="line">    Description=Shadowsocks</span><br><span class="line"></span><br><span class="line">    [Service]</span><br><span class="line">    TimeoutStartSec=<span class="number">0</span></span><br><span class="line">    #注意此处的ssserver的绝对路径</span><br><span class="line">    #建议使用whereis ssserver 进行查找确认</span><br><span class="line">    ExecStart=/usr/local/bin/ssserver -<span class="keyword">c</span> /etc/shadowsocks.json</span><br><span class="line"></span><br><span class="line">    [Install]</span><br><span class="line">    WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
@@ -435,8 +435,13 @@
 <li><p>启动服务</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start shadowsocks</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>本地下载shadowsocks客户端<br> 填写服务器地址、服务器端口、密码加密方式<br><br> 代理端口为1080<br><br> 单击 确定</p>
+<li><p>查看服务状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status shadowsocks</span><br></pre></td></tr></table></figure>
 </li>
+</ol>
+<p>应该出现绿色的active标识表示正常，否则根据提示信息进行相应配置</p>
+<ol start="9">
+<li>本地下载shadowsocks客户端<br> 填写服务器地址、服务器端口、密码加密方式<br><br> 代理端口为1080<br><br> 单击 确定</li>
 </ol>
 <h2 id="配置git服务器"><a href="#配置git服务器" class="headerlink" title="配置git服务器"></a>配置git服务器</h2><ol>
 <li><p>新建git用户和组</p>
@@ -649,7 +654,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
