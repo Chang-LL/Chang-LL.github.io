@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
-<meta name="keywords" content="server">
+  <meta name="description" content="前言有关操作系统线程的一些概念，进程是资源拥有单位(Unit of Recource)和调度单位(Unit of Dispatching)">
+<meta name="keywords" content="操作系统,线程,并发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一周总结(一)">
-<meta property="og:url" content="http://yoursite.com/2018/10/20/一周总结-一/index.html">
+<meta property="og:title" content="一周总结(七)">
+<meta property="og:url" content="http://yoursite.com/2018/12/22/一周总结-七/index.html">
 <meta property="og:site_name" content="ChangL-Blog">
-<meta property="og:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta property="og:description" content="前言有关操作系统线程的一些概念，进程是资源拥有单位(Unit of Recource)和调度单位(Unit of Dispatching)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-30T11:10:49.371Z">
+<meta property="og:updated_time" content="2018-12-22T09:37:18.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一周总结(一)">
-<meta name="twitter:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta name="twitter:title" content="一周总结(七)">
+<meta name="twitter:description" content="前言有关操作系统线程的一些概念，进程是资源拥有单位(Unit of Recource)和调度单位(Unit of Dispatching)">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/20/一周总结-一/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/22/一周总结-七/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>一周总结(一) | ChangL-Blog</title>
+  <title>一周总结(七) | ChangL-Blog</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/一周总结-一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/一周总结-七/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chang L">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一周总结(一)
+          <h1 class="post-title" itemprop="name headline">一周总结(七)
               
             
           </h1>
@@ -343,28 +343,34 @@
                 
               
 
-              <time title="创建时间：2018-10-20 15:13:17" itemprop="dateCreated datePublished" datetime="2018-10-20T15:13:17+08:00">2018-10-20</time>
+              <time title="创建时间：2018-12-22 17:35:23 / 修改时间：17:37:18" itemprop="dateCreated datePublished" datetime="2018-12-22T17:35:23+08:00">2018-12-22</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-30 19:10:49" itemprop="dateModified" datetime="2018-10-30T19:10:49+08:00">2018-10-30</time>
               
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -393,92 +399,101 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。</p>
-<a id="more"></a>
-<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><ol>
-<li><p>osi模型</p>
-<ol>
-<li>Physica：how to transmit signal (Coding) (bit)</li>
-<li>Datalink: two party communication (Ethernet) (frame)<br>&emsp;&emsp;<br>  dividing the transmitted bit stream into frames </li>
-<li>Network: Routing,Addressing (IP)(packet)<br>&emsp;&emsp;<br>  Determining which route through the subnet to use</li>
-<li>Transport: End-to-end communciation (TCP)(segment)</li>
-<li>Session: Establish/manage connection (SPDU)</li>
-<li>Presentation: ASCII Text,Sound (PPDU)</li>
-<li>Application: File transfer,Email,Remote Login (APDU)</li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>有关操作系统线程的一些概念，进程是资源拥有单位(Unit of Recource)和调度单位(Unit of Dispatching)
+</code></pre><a id="more"></a>
+<h2 id="线程概念"><a href="#线程概念" class="headerlink" title="线程概念"></a>线程概念</h2><ol>
+<li>资源拥有单元称为进程(或任务)，调度单位称为线程(轻型线程LWP: light weight process)</li>
+<li>线程定义为进程内一个执行单元或一个可调度实体</li>
+<li>线程有执行状态，不运行时保存上下文，有一个执行栈和局部变量的静态存储，可以存取所在进程全部资源，可以创建、撤销其他进程</li>
+<li>线程不拥有系统资源(资源分配于进程，线程只拥有少量的资源)</li>
+<li>进程中的多个线程可并发执行，系统开销小(创建(结束)花费时间少)，切换快，且同一进程中的线程通信无需调用内核</li>
+<li>多进程适合多处理机系统</li>
 </ol>
+<h2 id="多线程模型"><a href="#多线程模型" class="headerlink" title="多线程模型"></a>多线程模型</h2><ol>
+<li>线程实现机制<ul>
+<li>用户级(user-level)线程<ul>
+<li>用户线程的维护由应用进程完成</li>
+<li>内核不了解用户线程的存在</li>
+<li>用户线程切换不需要通过内核</li>
+<li>用户线程调度可针对应用优化</li>
+</ul>
 </li>
-<li><p>波特率(baud rate)与比特率(bit rate)</p>
-<ol>
-<li>比特率：通信线路(或系统)单位时间(每秒)内传输的信息量，即每秒能传输的二进制位数，通常用Rb表示，<br>  其单位是比特/秒(bit/s或b/s，英文缩略语为bps)。当系统以每秒50个二进制符号传输时，信息速率为50bit/s，信号速率也为50Bd(波特)。</li>
-<li>波特率： 通信线路(或系统)单位时间(每秒)内传输的码元(脉冲)个数；或者表示信号调制过程中，单位时间内调制信号波形的变换次数，<br>  通常用RB表示，单位是波特(Bd或Baud，前者规范)。如果每秒传输1个码元就称为1Bd；如果1码元的时间长短为200ms，则每秒可传输5个码元，那么码元速率(波特率)就是5Bd。<br>   码元(code cell)是携带信息的数字单位，是指在数字信道中传送数字信号的一个波形符号，也即“时间轴上的一个信号编码单元”。码元可能是二进制的，也可能是多进制的。</li>
-<li>转换关系：Rb=RB*log<sub>2</sub>M<br>&emsp; M表示码元的进制</li>
-<li>How long was a bit on the original 802.3 standard in meters? Use a transmission speed of 10 Mbps and assume the propagation speed in coax is 2/3 the speed of light in vacuum.<br>&emsp;<br> 计算出bit的传播时间再乘以速率：1s/10Mbps*c*2/3=20m</li>
+<li>内核级(kernel-level)线程<ul>
+<li>内核维护进程和线程</li>
+<li>内核完成线程切换</li>
+<li>时间片分配给线程，线程因此获得更多cpu时间</li>
+<li>一个线程发起系统调用后阻塞，不会影响其他线程运行</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>多线程模型<ul>
+<li>Many-to-Many<ul>
+<li>多个用户线程映射到单核线程中</li>
+<li>通过用户级运行库实现，不需要OS支持，开销小</li>
+<li>OS不了解多线程</li>
+<li>Solaris Green Threads、GNU Portable Threads</li>
+<li>并非真正并行</li>
+<li>一个线程阻塞就会导致进程阻塞</li>
+</ul>
+</li>
+<li>One-to-One<ul>
+<li>每一个用户级线程映射到了一个内核线程，各用户线程并行运行</li>
+<li>每个内核线程独立调度(通过OS)，开销大</li>
+<li>Windows NT/XP/2000、 Linux、Solaris 9+</li>
+<li>一个线程阻塞不会影响其他线程调度</li>
+</ul>
+</li>
+<li>Many-to-Many<ul>
+<li>多个用户级线程映射到多个内核线程</li>
+<li>OS创建足够的内核线程</li>
+<li>Solaris prior to version 9、 Win2000/NT with ThreadFiber package</li>
+</ul>
+</li>
+<li>Two-level Model<ul>
+<li>类似M:M，但允许一个用户线程绑定到内核线程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>线程库(用户级库或OS内核级库)<ul>
+<li>Pthreads(user-level or kernel-level): UNIX os</li>
+<li>Java Threads(JVM)使用底层OS提供的线程模型实现</li>
+</ul>
+</li>
 </ol>
-</li>
-<li><p>best-case delay = 请求和应答总路程/光速</p>
-<ul>
-<li>A client-server system uses a satellite network, with the satellite at a height of 40,000 km. What is the best-case delay in response to a request?<br>&emsp;<br>由于请求和应答都必须通过卫星，因此传输总路径长度为 160,000 千米。在空气 和真空中的光速为 300，000 公里/秒， 因此最佳的传播延迟为 160,000/300，000 秒，约 533 msec。 </li>
+<h2 id="隐私多线程-Implicit-Threading"><a href="#隐私多线程-Implicit-Threading" class="headerlink" title="隐私多线程(Implicit Threading)"></a>隐私多线程(Implicit Threading)</h2><ul>
+<li>多核多线程编程难题<ul>
+<li>编程挑战: 任务分解、工作量平衡、数据分割、数据依赖、测试和调试</li>
+<li>同步、互斥</li>
 </ul>
 </li>
-<li>A collection of five routers is to be connected in a point-to-point subnet. Between each pair of routers, the designers may put a high-speed line, a<br>medium-speed line, a low-speed line, or no line. If it takes 100 ms of computer time to generate and inspect each topology, how long will it take to inspect all of them?<br>&emsp; 将路由器称为 A，B，C，D 和 E.<br> 则有 10 条可能的线路；AB, AC, AD, AE, BC, BD, BE, CD, CE,和 DE 每条线路有 4 种可能性(3 速度或者不是线路)，拓扑的总数为 410 = 1,048,576。  检查每个拓扑需要 100 ms，全部检查总共需要 104,857. 6 秒，或者稍微超过 29 个小时。     </li>
-<li><p>面向连接服务(connection-oriented service)与无连接服务(connection-less service)</p>
-<p>1.面向连接服务：数据传输过程前必须经过建立连接、维护连接和释放连接的3个过 程；在数据传输过程中，各分组不需要携带目的节点的地址。面向连接服务的传输连接类似于一个通信管道，<br>发送者在一端放入数据，接受者从另一端取出数据。面向连接数据传输的收发数据顺序不变，因此传输的可<br>靠性好，但需通信开始前的链接开销，协议复杂，通信效率不高。<br><br>如virtual circuit service，电话系统，tcp</p>
-<ol start="2">
-<li>无连接服务:就是通信双方不需要事先建立一条通信线路，而是把每个带有目的地址的包（报文分组）送到线路上，由系统选定路线 进行传输。IP、UDP协议就是一种无连接协议，邮政系统是一个无连接的模式。 </li>
-</ol>
-</li>
-<li><p>多播(broadcasting)、广播(unicasting)与点对点(point-to-point)</p>
-</li>
-<li><p>信道传输速率</p>
-<ul>
-<li>Maximum signal rate for a channel (No Noise)<br>  -Nyquist Theorem: Bandwidth = W, Singal rate &lt;= 2 W (baud)</li>
-<li>Bilevel Encoding: Data rate = 2 * Bandwidth  (bps)</li>
-<li>Multilevel(M) Encoding:<br>  -Data rate = 2 * Bandwidth * log<sub>2</sub>M  (bps)</li>
-<li>Shannon’s Theorem<ul>
-<li>Bandwidth = H (Hz),  Signal-to-noise ratio = S/N<br><br>Maximum Data Rate = H * log<sub>2</sub>(1+S/N) (bps)无噪音情况下速率任意高</li>
+<li>应对：将线程的创建和管理交给编译器和运行时库</li>
+<li>设计方法<ul>
+<li>Thread Pools</li>
+<li>Fork Join</li>
+<li>OpenMp：支持C、C++、Fortran</li>
+<li>Grand Central Dispatch(GCD,大中央调度):Apple</li>
+<li>Intel Thread Building Blocks(TBB)：Intel开发</li>
+<li>Java</li>
 </ul>
 </li>
-<li>Decibels (dB): 10log<sub>10</sub>(S/N)</li>
+</ul>
+<h2 id="其他线程问题"><a href="#其他线程问题" class="headerlink" title="其他线程问题"></a>其他线程问题</h2><ol>
+<li>取消线程(Cancellation)<ul>
+<li>Asychronous: 直接结束线程</li>
+<li>Deferred cancellation: 目标线程检测是否自己可以结束</li>
 </ul>
 </li>
-<li><p>fdm带宽=信号频率 * 信号数量 + (信号数量-1) * 保护带宽</p>
-</li>
-<li><p>CDMA译码</p>
-<ol>
-<li>resulting chip sequence = chip sequence of A + chip sequence of B + …</li>
-<li>result = resulting chip sequence * chip sequence /len(sequence)<ul>
-<li>result = 0: silence</li>
-<li>result = 1: sent bit 1</li>
-<li>result = -1: sent bit 0</li>
+<li>信号处理(Signal Handling)<ul>
+<li>Signal通知进程某个事件(event)发生</li>
+<li>generated delivered handled</li>
+<li>deliver有多种方式: 直接交给所响应的线程；交给全部线程;…</li>
 </ul>
 </li>
-</ol>
-</li>
-<li><p>一些传输标准</p>
-<ul>
-<li>CCTT 2.048 Mbps标准：32个8位数据样本组成一个125us的基本帧，<br>30个传信息，2个传控制信号。</li>
-<li>DPCM(差分脉码调制)，传播的二进制数为相对差值位</li>
-<li>Delta modulation(增量调制) 位数为1</li>
-</ul>
-</li>
-<li><p>T1 carrier与E1 carrier</p>
-<ul>
-<li>T1为1.544Mbps，T1载波是把24个话音信道多路复用在一条高速信道上，每个信道包含7位的数据和1位的控制信令位，<br>此外加入一位帧同步位组成基本帧。 其中，用户的开销为24×1（控制位）+1（基本帧）=25 b 总开销为：（7+1）×24+1=193 b 因此，用户的开销所占的百分比为：25/193×100%≈13%</li>
-<li>E1载波是一种2.048Mbps速率的PCM载波。采用同步时分复用技术将30个话音信道（64K）和２个控制信道（16K）复合在一条2.048Mb/s的高速信道上。<br>  【帧结构】：每一帧开始处有8位作同步用,中间有8位用作信令,在组织30路8位数据,全帧包含256位,且每一帧用 125us时间传送。(通常我们把E1载波的一个帧分为32个时隙，一个时隙为8个bit；其中时隙0和时隙15是传输控制信令用，所以一条E1可以传30路话音。这里要注意：在路由器上的E1是不能划分时隙的，只能做2M线使用）。<ol>
-<li>E1载波支持的数据传输速率为2.048Mbps （即 256bit/125us=2.048Mbps)</li>
-<li>每个通道支持 的传输速度（或数据速率）为 64Kb/s 因为每个时隙在E1帧中占8bit，8*8k=64k，即一条E1中含有32个64K，则 2.048Mbps/32=64Kb/s</li>
-<li>E1载波开销所占比例为6.25% 。因为一帧32个时隙中，30个用于用户数据，2个用于开销。所以开销所占比例=2/32=6.25%</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>The cable between toll office and the end office of telephone company are known as the <em>trunk</em></li>
-<li>data link layer传输bit，每五个1后面自动加一个0<ul>
-<li>传输bit：0111101111101111110，实际bit：011110111110011111010</li>
-</ul>
-</li>
-<li>reminder of M(x) dividing G(x)<ul>
-<li>先在M(x)后补0(个数为G(x)的最高次+1)，再做多项式除法</li>
+<li>线程池<ul>
+<li>预创建多个线程</li>
+<li>通常比创建一个新进程快</li>
 </ul>
 </li>
 </ol>
@@ -500,6 +515,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+            <a href="/tags/线程/" rel="tag"># 线程</a>
+          
+            <a href="/tags/并发/" rel="tag"># 并发</a>
+          
+        </div>
+      
 
       
       
@@ -509,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/11/Linux/" rel="next" title="服务器相关教程">
-                <i class="fa fa-chevron-left"></i> 服务器相关教程
+              <a href="/2018/12/22/一周总结-六/" rel="next" title="一周总结(六)">
+                <i class="fa fa-chevron-left"></i> 一周总结(六)
               </a>
             
           </div>
@@ -518,10 +543,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/31/一周总结-二/" rel="prev" title="一周总结(二)">
-                一周总结(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -673,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络"><span class="nav-number"></span> <span class="nav-text">计算机网络</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程概念"><span class="nav-number">2.</span> <span class="nav-text">线程概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程模型"><span class="nav-number">3.</span> <span class="nav-text">多线程模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#隐私多线程-Implicit-Threading"><span class="nav-number">4.</span> <span class="nav-text">隐私多线程(Implicit Threading)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他线程问题"><span class="nav-number">5.</span> <span class="nav-text">其他线程问题</span></a></li></ol></div>
             
 
           </div>
