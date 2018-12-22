@@ -108,25 +108,27 @@
 
 
 
-  <meta name="description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+  <meta name="description" content="前言The Medium Access Sublayer">
 <meta name="keywords" content="server">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一周总结(一)">
-<meta property="og:url" content="http://yoursite.com/2018/10/20/一周总结-一/index.html">
+<meta property="og:title" content="一周总结(四)">
+<meta property="og:url" content="http://yoursite.com/2018/12/08/一周总结-四/index.html">
 <meta property="og:site_name" content="ChangL-Blog">
-<meta property="og:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta property="og:description" content="前言The Medium Access Sublayer">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-30T11:10:49.371Z">
+<meta property="og:image" content="http://www.cs.zju.edu.cn/network/courseware/netbase/chap4/images/fig4-6.jpg">
+<meta property="og:updated_time" content="2018-12-08T07:44:06.985Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一周总结(一)">
-<meta name="twitter:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta name="twitter:title" content="一周总结(四)">
+<meta name="twitter:description" content="前言The Medium Access Sublayer">
+<meta name="twitter:image" content="http://www.cs.zju.edu.cn/network/courseware/netbase/chap4/images/fig4-6.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/20/一周总结-一/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/08/一周总结-四/"/>
 
 
 
@@ -136,7 +138,7 @@
   };
 </script>
 
-  <title>一周总结(一) | ChangL-Blog</title>
+  <title>一周总结(四) | ChangL-Blog</title>
   
 
 
@@ -285,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/一周总结-一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/一周总结-四/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chang L">
@@ -302,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一周总结(一)
+          <h1 class="post-title" itemprop="name headline">一周总结(四)
               
             
           </h1>
@@ -327,25 +329,9 @@
                 
               
 
-              <time title="创建时间：2018-10-20 15:13:17" itemprop="dateCreated datePublished" datetime="2018-10-20T15:13:17+08:00">2018-10-20</time>
+              <time title="创建时间：2018-12-08 15:44:06" itemprop="dateCreated datePublished" datetime="2018-12-08T15:44:06+08:00">2018-12-08</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-30 19:10:49" itemprop="dateModified" datetime="2018-10-30T19:10:49+08:00">2018-10-30</time>
-              
             
           </span>
 
@@ -377,94 +363,146 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。</p>
-<a id="more"></a>
-<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><ol>
-<li><p>osi模型</p>
-<ol>
-<li>Physica：how to transmit signal (Coding) (bit)</li>
-<li>Datalink: two party communication (Ethernet) (frame)<br>&emsp;&emsp;<br>  dividing the transmitted bit stream into frames </li>
-<li>Network: Routing,Addressing (IP)(packet)<br>&emsp;&emsp;<br>  Determining which route through the subnet to use</li>
-<li>Transport: End-to-end communciation (TCP)(segment)</li>
-<li>Session: Establish/manage connection (SPDU)</li>
-<li>Presentation: ASCII Text,Sound (PPDU)</li>
-<li>Application: File transfer,Email,Remote Login (APDU)</li>
-</ol>
-</li>
-<li><p>波特率(baud rate)与比特率(bit rate)</p>
-<ol>
-<li>比特率：通信线路(或系统)单位时间(每秒)内传输的信息量，即每秒能传输的二进制位数，通常用Rb表示，<br>  其单位是比特/秒(bit/s或b/s，英文缩略语为bps)。当系统以每秒50个二进制符号传输时，信息速率为50bit/s，信号速率也为50Bd(波特)。</li>
-<li>波特率： 通信线路(或系统)单位时间(每秒)内传输的码元(脉冲)个数；或者表示信号调制过程中，单位时间内调制信号波形的变换次数，<br>  通常用RB表示，单位是波特(Bd或Baud，前者规范)。如果每秒传输1个码元就称为1Bd；如果1码元的时间长短为200ms，则每秒可传输5个码元，那么码元速率(波特率)就是5Bd。<br>   码元(code cell)是携带信息的数字单位，是指在数字信道中传送数字信号的一个波形符号，也即“时间轴上的一个信号编码单元”。码元可能是二进制的，也可能是多进制的。</li>
-<li>转换关系：Rb=RB*log<sub>2</sub>M<br>&emsp; M表示码元的进制</li>
-<li>How long was a bit on the original 802.3 standard in meters? Use a transmission speed of 10 Mbps and assume the propagation speed in coax is 2/3 the speed of light in vacuum.<br>&emsp;<br> 计算出bit的传播时间再乘以速率：1s/10Mbps*c*2/3=20m</li>
-</ol>
-</li>
-<li><p>best-case delay = 请求和应答总路程/光速</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>The Medium Access Sublayer 
+</code></pre><a id="more"></a>
+<h2 id="概念解析以及习题分析"><a href="#概念解析以及习题分析" class="headerlink" title="概念解析以及习题分析"></a>概念解析以及习题分析</h2><ol>
+<li><p>ALOHA协议：</p>
 <ul>
-<li>A client-server system uses a satellite network, with the satellite at a height of 40,000 km. What is the best-case delay in response to a request?<br>&emsp;<br>由于请求和应答都必须通过卫星，因此传输总路径长度为 160,000 千米。在空气 和真空中的光速为 300，000 公里/秒， 因此最佳的传播延迟为 160,000/300，000 秒，约 533 msec。 </li>
+<li>Pure ALOHA：传输点可以在任意时刻发送帧，当两个传输点同时向频道传输数据时会发生冲突，<br>这时这两个传输点停止一个随机时间后再次发送帧。它不需要一个全局时钟。设G为每单位时间传输的包量，S为吞吐量，则有<br>S = Ge<sup>-2G</sup>，当G=0.5时最大值为18.6%<ul>
+<li>Slotted ALOHA： 时间被分段，每个传输点必须在一个时间槽的开始时传送，传送的数据必须小等于<br>这个时间槽。它需要全局时钟来同步。效率为S = Ge<sup>-G</sup>，当G=1时最大值为36%</li>
 </ul>
 </li>
-<li>A collection of five routers is to be connected in a point-to-point subnet. Between each pair of routers, the designers may put a high-speed line, a<br>medium-speed line, a low-speed line, or no line. If it takes 100 ms of computer time to generate and inspect each topology, how long will it take to inspect all of them?<br>&emsp; 将路由器称为 A，B，C，D 和 E.<br> 则有 10 条可能的线路；AB, AC, AD, AE, BC, BD, BE, CD, CE,和 DE 每条线路有 4 种可能性(3 速度或者不是线路)，拓扑的总数为 410 = 1,048,576。  检查每个拓扑需要 100 ms，全部检查总共需要 104,857. 6 秒，或者稍微超过 29 个小时。     </li>
-<li><p>面向连接服务(connection-oriented service)与无连接服务(connection-less service)</p>
-<p>1.面向连接服务：数据传输过程前必须经过建立连接、维护连接和释放连接的3个过 程；在数据传输过程中，各分组不需要携带目的节点的地址。面向连接服务的传输连接类似于一个通信管道，<br>发送者在一端放入数据，接受者从另一端取出数据。面向连接数据传输的收发数据顺序不变，因此传输的可<br>靠性好，但需通信开始前的链接开销，协议复杂，通信效率不高。<br><br>如virtual circuit service，电话系统，tcp</p>
-<ol start="2">
-<li>无连接服务:就是通信双方不需要事先建立一条通信线路，而是把每个带有目的地址的包（报文分组）送到线路上，由系统选定路线 进行传输。IP、UDP协议就是一种无连接协议，邮政系统是一个无连接的模式。 </li>
-</ol>
+</ul>
 </li>
-<li><p>多播(broadcasting)、广播(unicasting)与点对点(point-to-point)</p>
-</li>
-<li><p>信道传输速率</p>
+<li><p>CSMA协议</p>
 <ul>
-<li>Maximum signal rate for a channel (No Noise)<br>  -Nyquist Theorem: Bandwidth = W, Singal rate &lt;= 2 W (baud)</li>
-<li>Bilevel Encoding: Data rate = 2 * Bandwidth  (bps)</li>
-<li>Multilevel(M) Encoding:<br>  -Data rate = 2 * Bandwidth * log<sub>2</sub>M  (bps)</li>
-<li>Shannon’s Theorem<ul>
-<li>Bandwidth = H (Hz),  Signal-to-noise ratio = S/N<br><br>Maximum Data Rate = H * log<sub>2</sub>(1+S/N) (bps)无噪音情况下速率任意高</li>
+<li>发送数据前先监听信道，若空闲，则立即发送数据。若监听到冲突，等待随机时间，再重新发送</li>
+<li>Nonpersistent CSMA：若空闲，发送数据，若忙碌，则等待随机时间再监听。减少冲突，信道利用率降低</li>
+<li>1-persistent CSMA： 若空闲，发送数据，若忙碌，则一直监听到空闲再发送。提高信道利用率，增大冲突</li>
+<li>p-persistent CSMA： 若忙，继续监听，若空闲，根据p概率发送，1-p概率继续监听。有效平衡，但复杂</li>
 </ul>
 </li>
-<li>Decibels (dB): 10log<sub>10</sub>(S/N)</li>
+<li>CSMA/CD<ul>
+<li>在CSMA的基础上增加Collision Detected，即发送数据时监听冲突。若冲突则立即停止发送数据，等待随机时间后重发</li>
+<li>随机时间采取了<span id="binary">二进制指数退避算法(binary exponential backoff)</span>。<ul>
+<li>基本退避时间为端到端的往返时间2t(冲突期、争用期)</li>
+<li>当冲突次数k小于10时，在[0,1,2,3,…,(2<sup>k</sup>-1)]在随机选取整数r，等待时延为r*2t</li>
+<li>当冲突次数大于10时，取k为10</li>
+<li>当冲突次数超过16，发送失败</li>
 </ul>
 </li>
-<li><p>fdm带宽=信号频率 * 信号数量 + (信号数量-1) * 保护带宽</p>
-</li>
-<li><p>CDMA译码</p>
-<ol>
-<li>resulting chip sequence = chip sequence of A + chip sequence of B + …</li>
-<li>result = resulting chip sequence * chip sequence /len(sequence)<ul>
-<li>result = 0: silence</li>
-<li>result = 1: sent bit 1</li>
-<li>result = -1: sent bit 0</li>
+<li>它是抢占(Seize)的，即一个站点发送数据，其他的就等待</li>
+<li>发送时间必须大于两倍传输时间。假设A与B相隔1km，当A发送数据到B。这个数据帧在非常接近B的时候与B发送出的数据冲突了(即经过传输时间t后冲突)，<br>那么A需要在经过一个传输时间t才能检测到冲突。如果小于2t，那么发送停止后才会接收到返回的冲突帧，监听冲突就失败了。</li>
 </ul>
 </li>
-</ol>
+<li>Collision-Free Protocols<ul>
+<li>Bit-Map Protocol：<img src="http://www.cs.zju.edu.cn/network/courseware/netbase/chap4/images/fig4-6.jpg" alt="tp"><br>竞争周期由N个间隙组成，站点j可以在时隙j填入1bit，表明有1帧发送，然后按照顺序发送。效率=d/(N+d),N每帧开销，d数据量/帧，高负荷下N=1</li>
+<li>Token Ring： 就是令牌在环形总线中传递，只有拿到令牌的节点才能发送数据</li>
+<li>Binary Countdown：每一个站点产生一个二进制地址，如0010，0100，1001。站点在每一个位时间按序发送一个bit，在发送时这些地址被取或返回。<br>第一个位时间发送0，0，1，取或后，0010和0100看到了1，则他们知道有高序地址在竞争，就放弃发送。1001发送帧之后，开始新一轮竞争。效率为d/(d+log<sub>2</sub>N)</li>
+<li>Limited-Contention Protocol: 在低载荷时采用竞争法使时延较短，在重载荷时采用无冲突法，使信道利用率较高，</li>
+</ul>
 </li>
-<li><p>一些传输标准</p>
+<li>IP地址与MAC地址的区别<ul>
+<li>IP地址是指互联网协议地址（Internet Protocol Address），长32位，是分配给网络和主机的逻辑地址</li>
+<li>MAC地址是指物理地址、硬件地址，是烧到网卡里的，具有全球唯一性</li>
+</ul>
+</li>
+<li>二级交换机<ul>
+<li>设A1，A2为同处VLAN1的PC，B1，B2为同处VLAN2的PC，且它们均连在了交换机S1，S1与路由器R1相连。</li>
+<li>VLAN内通信：A1给A2发送信息<ul>
+<li>交换机收到A1的数据帧，分析报头，得到目标MAC地址。</li>
+<li>交换机在内部的MAC地址表中查找对应端口A2，若找到，则发送给A2；若未找到，则向VLAN1内所有端口(A2,R1)进行广播，收到A2回应后，将A2加入到MAC地址表中，并发送帧给A2</li>
+<li>交换机可以建立记录和维护地址表。这也称为交换机学习能力(auto learn)</li>
+</ul>
+</li>
+<li>VLAN间通信：A1给B1发送信息<ul>
+<li>交换机收到A1的数据帧，分析报头，得到目标MAC地址</li>
+<li>交换机查找对应端口，如果地址表中记录端口对应路由器，则发送给路由器；否则则向VLAN1内所有端口(A2,A3,R1)进行广播，路由器分析知B1属于Vlan2，则回应交换机。交换机将路由器地址加入到对应的表中，把帧发送给路由器</li>
+<li>路由器通过交换机Vlan2把帧发给B1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>三级交换机<ul>
+<li>网络内通信：设A1，A2为同处网络1的PC，B1，B2为同处网络2的PC，且它们均连在了交换机S1。<ul>
+<li>A1使用A2的IP地址和子网掩码取得A2的网络地址(IP地址 &amp; 子网掩码)，确定它们属于同一网段</li>
+<li>A1给A2发送ARP，得到A2返回的MAC，A1用A2的MAC封装数据包，发送给交换机。</li>
+<li>交换机用二层交换，查找MAC地址表，转发数据包</li>
+</ul>
+</li>
+<li>网络间通信：<ul>
+<li>A1使用B1的IP与子网，确定不在一个子网内</li>
+<li>A1将数据包发送给缺省网关(即交换机的三层路由)</li>
+<li>路由通过查询路由表，以缺省网关的MAC为源地址，以B1的MAC地址为目标MAC，构建新帧头。</li>
+<li>三层路由将A1与B1的MAC地址以及转发端口的对应关系加入地址映射表中</li>
+<li>A1发送给B1的数据将可以直接通过二层交换进行。(一次路由，多次转发)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>CSMA/CA<ul>
+<li>包括载波监听(CSMA)与冲突避免(CA)</li>
+<li>发送之前开始监听，若信道为空，则等待一个帧间隔，再次监听，若空，则开始<a href="#binary">随机后退</a>，结束后再次监听，若空则发送数据。以上任一阶段不空，则停止本次发送。之后重新开始本过程</li>
+<li>帧间隔分为SIFS、PIFS、DIFS、EIFS，优先级依次降低。<a href="http://www.rfwireless-world.com/Terminology/WLAN-SIFS-vs-PIFS-vs-DIFS-vs-EIFS-vs-AIFS.html" target="_blank" rel="noopener">参见</a><ul>
+<li>SIFS：control frame or next fragment (ACK CTS)</li>
+<li>PIFS: PCF frames (用以获得在无竞争访问周期启动时访问信道的优先权)</li>
+<li>DIFS: DCF frames (一般数据帧和管理帧)</li>
+<li>EIFS: Bad frame recovery</li>
+</ul>
+</li>
+<li>当一个站发送第一个帧时并且检测到此时信道为空，则不进行二进制退避</li>
+</ul>
+</li>
+<li>网桥的自学习与转发<ul>
+<li>当网桥收到一个帧时，就在自己的转发表中进行查找，若没有，则将(地址，端口)加入到表中</li>
+<li>当网桥转发一个帧时，也查找自己的转发表，若没有，则从其他端口进行转发；若有，则将该端口与该帧进入网桥的端口进行比较，若相等，则丢弃该帧，因为目的主机已经收到了，否则转发。</li>
+</ul>
+</li>
+<li>Spanning Tree Bridges (STP,生成树协议)<ul>
+<li>交换网络互联，会造成网络环路，引发广播风暴。</li>
+<li>STP就是把环形结构变成一个树形结构，在逻辑上阻塞一些端口</li>
+<li>依据网桥ID(由网桥优先级和网桥MAC地址决定)选择根网桥(小者优先)</li>
+<li>依据根路径成本选择根端口和指定端口</li>
+</ul>
+</li>
+<li>MACA(Multiple Access with Collision Avoidance)协议(冲突避免多路访问)<ul>
+<li>RTS(Request To Send)帧，该帧由发送方发送，包含了随后将要发送的数据帧的长度</li>
+<li>CTS(Clear to Send)帧，由接收到RTS的站点返回，包含了数据长度(从RTS复制)</li>
+<li>发送方收到CTS后开始发送</li>
+<li>其他站收到RTS，则保持沉默，至少等待足够长的时间以便在无冲突的情况下CTS返回给A。</li>
+<li>如果其他站收到CTS，则它可以检查CTS帧获得数据帧长度，保持沉默在接下来的数据传输中</li>
+<li>收到RTS但没有收到CTS的站点可以在数据帧传输过程中自由发送任何信息</li>
+<li>收到CTS帧，则无论是否收到RTS帧，都要延缓发送任何信息直到那个帧如期传送完毕</li>
+</ul>
+</li>
+<li>名词解析<ul>
+<li>Application layer: Application gateway</li>
+<li>Transport layer: Transport gateway</li>
+<li>Network layer: Router(路由器)</li>
+<li>Data link layer: Bridge(桥接器), switch(交换机)</li>
+<li>Physical layer: Repeater(中继器，延长网络距离), hub(集线器,连接多个设备)</li>
+</ul>
+</li>
+<li>Frame header、<em>Packet header、TCP header、User data</em>、CRC。<em>斜体</em>是packet，由网络层构建，整个是Frame，由数据链路层构建</li>
+<li><p><a href="https://blog.csdn.net/phunxm/article/details/9498829" target="_blank" rel="noopener">VLAN</a>，讲的很详细，摘抄一点如下</p>
+<h2 id="习题解析"><a href="#习题解析" class="headerlink" title="习题解析"></a>习题解析</h2></li>
+<li><p>A group of N stations share a 56-kbps pure ALOHA channel. Each station outputs a 1000-bit frame on an average of once every 100 sec, even if the previous one has not yet been sent (e.g., the stations can buffer outgoing frames). What is the maximum value of N?</p>
 <ul>
-<li>CCTT 2.048 Mbps标准：32个8位数据样本组成一个125us的基本帧，<br>30个传信息，2个传控制信号。</li>
-<li>DPCM(差分脉码调制)，传播的二进制数为相对差值位</li>
-<li>Delta modulation(增量调制) 位数为1</li>
+<li>思路：计算出纯ALOHA的带宽，以及每个站需要的带宽。</li>
+<li>纯ALOHA的带宽=信道利用率(0.184)x56kb/s，站点需要的带宽为1000bit/100sec=10b/s</li>
 </ul>
 </li>
-<li><p>T1 carrier与E1 carrier</p>
-<ul>
-<li>T1为1.544Mbps，T1载波是把24个话音信道多路复用在一条高速信道上，每个信道包含7位的数据和1位的控制信令位，<br>此外加入一位帧同步位组成基本帧。 其中，用户的开销为24×1（控制位）+1（基本帧）=25 b 总开销为：（7+1）×24+1=193 b 因此，用户的开销所占的百分比为：25/193×100%≈13%</li>
-<li>E1载波是一种2.048Mbps速率的PCM载波。采用同步时分复用技术将30个话音信道（64K）和２个控制信道（16K）复合在一条2.048Mb/s的高速信道上。<br>  【帧结构】：每一帧开始处有8位作同步用,中间有8位用作信令,在组织30路8位数据,全帧包含256位,且每一帧用 125us时间传送。(通常我们把E1载波的一个帧分为32个时隙，一个时隙为8个bit；其中时隙0和时隙15是传输控制信令用，所以一条E1可以传30路话音。这里要注意：在路由器上的E1是不能划分时隙的，只能做2M线使用）。<ol>
-<li>E1载波支持的数据传输速率为2.048Mbps （即 256bit/125us=2.048Mbps)</li>
-<li>每个通道支持 的传输速度（或数据速率）为 64Kb/s 因为每个时隙在E1帧中占8bit，8*8k=64k，即一条E1中含有32个64K，则 2.048Mbps/32=64Kb/s</li>
-<li>E1载波开销所占比例为6.25% 。因为一帧32个时隙中，30个用于用户数据，2个用于开销。所以开销所占比例=2/32=6.25%</li>
-</ol>
-</li>
+<li>What is the baud rate of the standard 10-Mbps Ethernet?<ul>
+<li>以太网标准10M 802.3 LAN采用曼彻斯特编码，即每一位都有两个信号周期，所以为20Mbaud</li>
 </ul>
 </li>
-<li>The cable between toll office and the end office of telephone company are known as the <em>trunk</em></li>
-<li>data link layer传输bit，每五个1后面自动加一个0<ul>
-<li>传输bit：0111101111101111110，实际bit：011110111110011111010</li>
+<li>Consider building a CSMA/CD network running at 10 Mbps over a 1-km cable with no repeaters. The signal speed in the cable is 200,000 km/sec. What is the minimum frame size? <ul>
+<li>信号传输时间t=1km / 200000km/sec，最小发送时间为2t，则最小帧为2t*1G。</li>
 </ul>
 </li>
-<li>reminder of M(x) dividing G(x)<ul>
-<li>先在M(x)后补0(个数为G(x)的最高次+1)，再做多项式除法</li>
-</ul>
-</li>
+<li>The reason for binary exponential backoff in the classical Ethernet is that this algorithm is adaptive to network load</li>
+<li>A network interface card mainly works at physical and data link</li>
+<li>1000Base-F network: Fiber Optics</li>
 </ol>
 
       
@@ -493,8 +531,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/11/Linux/" rel="next" title="服务器相关教程">
-                <i class="fa fa-chevron-left"></i> 服务器相关教程
+              <a href="/2018/12/01/自动登录脚本/" rel="next" title="自动登录脚本">
+                <i class="fa fa-chevron-left"></i> 自动登录脚本
               </a>
             
           </div>
@@ -502,10 +540,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/31/一周总结-二/" rel="prev" title="一周总结(二)">
-                一周总结(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -642,7 +676,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络"><span class="nav-number"></span> <span class="nav-text">计算机网络</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念解析以及习题分析"><span class="nav-number">2.</span> <span class="nav-text">概念解析以及习题分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题解析"><span class="nav-number">3.</span> <span class="nav-text">习题解析</span></a></li></ol></div>
             
 
           </div>
