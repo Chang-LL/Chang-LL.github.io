@@ -108,27 +108,25 @@
 
 
 
-  <meta name="description" content="前言The Medium Access Sublayer">
-<meta name="keywords" content="server">
+  <meta name="description" content="前言   本次总结是操作系统的基础知识">
+<meta name="keywords" content="操作系统">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一周总结(四)">
-<meta property="og:url" content="http://yoursite.com/2018/12/08/一周总结-四/index.html">
+<meta property="og:title" content="一周总结(五)">
+<meta property="og:url" content="http://yoursite.com/2018/12/22/一周总结-五/index.html">
 <meta property="og:site_name" content="ChangL-Blog">
-<meta property="og:description" content="前言The Medium Access Sublayer">
+<meta property="og:description" content="前言   本次总结是操作系统的基础知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.cs.zju.edu.cn/network/courseware/netbase/chap4/images/fig4-6.jpg">
-<meta property="og:updated_time" content="2018-12-08T07:44:06.985Z">
+<meta property="og:updated_time" content="2018-12-22T09:27:27.820Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一周总结(四)">
-<meta name="twitter:description" content="前言The Medium Access Sublayer">
-<meta name="twitter:image" content="http://www.cs.zju.edu.cn/network/courseware/netbase/chap4/images/fig4-6.jpg">
+<meta name="twitter:title" content="一周总结(五)">
+<meta name="twitter:description" content="前言   本次总结是操作系统的基础知识">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/08/一周总结-四/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/22/一周总结-五/"/>
 
 
 
@@ -138,7 +136,7 @@
   };
 </script>
 
-  <title>一周总结(四) | ChangL-Blog</title>
+  <title>一周总结(五) | ChangL-Blog</title>
   
 
 
@@ -303,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/一周总结-四/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/22/一周总结-五/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chang L">
@@ -320,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一周总结(四)
+          <h1 class="post-title" itemprop="name headline">一周总结(五)
               
             
           </h1>
@@ -345,12 +343,34 @@
                 
               
 
-              <time title="创建时间：2018-12-08 15:44:06" itemprop="dateCreated datePublished" datetime="2018-12-08T15:44:06+08:00">2018-12-08</time>
+              <time title="创建时间：2018-12-22 17:17:40 / 修改时间：17:27:27" itemprop="dateCreated datePublished" datetime="2018-12-22T17:17:40+08:00">2018-12-22</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -379,146 +399,80 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>The Medium Access Sublayer 
-</code></pre><a id="more"></a>
-<h2 id="概念解析以及习题分析"><a href="#概念解析以及习题分析" class="headerlink" title="概念解析以及习题分析"></a>概念解析以及习题分析</h2><ol>
-<li><p>ALOHA协议：</p>
-<ul>
-<li>Pure ALOHA：传输点可以在任意时刻发送帧，当两个传输点同时向频道传输数据时会发生冲突，<br>这时这两个传输点停止一个随机时间后再次发送帧。它不需要一个全局时钟。设G为每单位时间传输的包量，S为吞吐量，则有<br>S = Ge<sup>-2G</sup>，当G=0.5时最大值为18.6%<ul>
-<li>Slotted ALOHA： 时间被分段，每个传输点必须在一个时间槽的开始时传送，传送的数据必须小等于<br>这个时间槽。它需要全局时钟来同步。效率为S = Ge<sup>-G</sup>，当G=1时最大值为36%</li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>   本次总结是操作系统的基础知识</p>
+<a id="more"></a>
+<h2 id="操作系统服务"><a href="#操作系统服务" class="headerlink" title="操作系统服务"></a>操作系统服务</h2><ul>
+<li>User interface: CLI(Command-Line),GUI</li>
+<li>Program execution: 加载程序到memory并执行</li>
+<li>I/O operation: 文件或I/O设备</li>
+<li>File-System manipulation:  文件系统管理</li>
+<li>Communications: 进程通信</li>
+<li>Error detection: 异常处理</li>
+<li>Resource allocation: 资源分配，用于多用户</li>
+<li>Accounting: 用于记录各用户分配的资源</li>
+<li>Protection and security </li>
+</ul>
+<h2 id="User-Operating-System-Interface"><a href="#User-Operating-System-Interface" class="headerlink" title="User Operating System Interface"></a>User Operating System Interface</h2><ol>
+<li>操作系统接口包括命令接口(Command Interface)和程序接口(Program Interface,system call)。</li>
+<li>用户接口(UI)，包括CLI和GUI，以及触屏、音控等等</li>
+<li>System Calls(系统调用、程序接口)：在进程和内核之间的程序接口</li>
+<li>应用编程接口(API)其实是一组函数定义，这些函数说明了如何获得一个给 定的服务；而系统调用是通过软中断向内核发出一个明确的请求，每个系 统调用对应一个封装例程（wrapper routine，唯一目的就是发布系统调 用）。一些API应用了封装例程。 </li>
+<li>System Call传递参数的方式：传reg，传地址到reg，压栈</li>
+<li>System Call的类型: Process control、 File management、 Device management、information maintenance、Communications</li>
+</ol>
+<h2 id="System-Service"><a href="#System-Service" class="headerlink" title="System Service"></a>System Service</h2><ol>
+<li>File manipulation 创建、删除…</li>
+<li>Status information 时间、硬盘空间、可用内存、日志、debug…</li>
+<li>File modification 文本编辑</li>
+<li>Programming language support 编译器、汇编器、调试器</li>
+<li>Program loading and execution </li>
+<li>Communications 进程、用户、系统</li>
+<li>Application programs </li>
+</ol>
+<h2 id="Linkers-and-Loaders"><a href="#Linkers-and-Loaders" class="headerlink" title="Linkers and Loaders"></a>Linkers and Loaders</h2><ol>
+<li>relocatable object file: 可以重定位、可以加载到任意物理内存空间</li>
+<li>Linker将obj链接为二进制可运行程序(single binary executable file )</li>
+<li>Application Binary Interface(ABI)</li>
+</ol>
+<h2 id="Operating-System-Structure"><a href="#Operating-System-Structure" class="headerlink" title="Operating System Structure"></a>Operating System Structure</h2><ol>
+<li>Simple Structure: 简单结构 MS_DOS</li>
+<li>Layered Approach: 层次结构  <p>每一层都是建立在下一层之上，最底层是硬件，最高层是用户接口</p></li>
+<li>Monolithic Kernels Structure: 单/宏内核结构 OS/360,VMS,Linux,UNIX<ul>
+<li>内核的全部代码包括所有子系统都打包到一个文件中，内核的每一个部分都可以访问内核中所有其他部分。编程时一出现源代码复杂嵌套</li>
+<li>简单且普遍</li>
+<li>非常高效，因为各个组件都可以直接通信</li>
+<li>难以找到bug位置</li>
+<li>难以修改和维护</li>
+<li>OS的发展使得内核越来越大</li>
 </ul>
 </li>
+<li>Microkernel: 微内核<ul>
+<li>由”微”内核和若干服务组成，最基本最常用的功能由中央内核实现，其他功能由独立进程实现，并通过明确定义的定义的通信接口与中央内核通信通信</li>
+<li>动态可扩展性+运行时切换重要组件</li>
+<li>更加安全和可靠(更少的代码在内核模式下运行)</li>
+<li>组件间支持复杂通信需要额外的CPU时间</li>
+<li>用户空间到内核空间的额外开销</li>
+<li>Win NT … Win8 Win 10 Mac OS</li>
 </ul>
 </li>
-<li><p>CSMA协议</p>
-<ul>
-<li>发送数据前先监听信道，若空闲，则立即发送数据。若监听到冲突，等待随机时间，再重新发送</li>
-<li>Nonpersistent CSMA：若空闲，发送数据，若忙碌，则等待随机时间再监听。减少冲突，信道利用率降低</li>
-<li>1-persistent CSMA： 若空闲，发送数据，若忙碌，则一直监听到空闲再发送。提高信道利用率，增大冲突</li>
-<li>p-persistent CSMA： 若忙，继续监听，若空闲，根据p概率发送，1-p概率继续监听。有效平衡，但复杂</li>
+<li>Modules: 模块<ul>
+<li>Object-Oriented approach</li>
+<li>core component is separate</li>
+<li>each talks to the others over known interfaces</li>
+<li>each is loadable as needed with more flexible</li>
+<li>Linux Solaris</li>
 </ul>
 </li>
-<li>CSMA/CD<ul>
-<li>在CSMA的基础上增加Collision Detected，即发送数据时监听冲突。若冲突则立即停止发送数据，等待随机时间后重发</li>
-<li>随机时间采取了<span id="binary">二进制指数退避算法(binary exponential backoff)</span>。<ul>
-<li>基本退避时间为端到端的往返时间2t(冲突期、争用期)</li>
-<li>当冲突次数k小于10时，在[0,1,2,3,…,(2<sup>k</sup>-1)]在随机选取整数r，等待时延为r*2t</li>
-<li>当冲突次数大于10时，取k为10</li>
-<li>当冲突次数超过16，发送失败</li>
+<li>Hybrid Systems: 混合结构</li>
+<li>Virtual Machines: 虚拟机<ul>
+<li>采取分层结构，将系统内核和硬件都视为硬件</li>
+<li>提供与底层裸机相同的接口</li>
+<li>The operating system host creates the illusion that a process has its own processor and (virtual memory)</li>
+<li>Each guest provided with a (virtual) copy of underlying computer</li>
+<li>通过共享物理机资源来创建虚拟机</li>
+<li>每个虚拟机都是孤立的且无法直接共享资源</li>
 </ul>
 </li>
-<li>它是抢占(Seize)的，即一个站点发送数据，其他的就等待</li>
-<li>发送时间必须大于两倍传输时间。假设A与B相隔1km，当A发送数据到B。这个数据帧在非常接近B的时候与B发送出的数据冲突了(即经过传输时间t后冲突)，<br>那么A需要在经过一个传输时间t才能检测到冲突。如果小于2t，那么发送停止后才会接收到返回的冲突帧，监听冲突就失败了。</li>
-</ul>
-</li>
-<li>Collision-Free Protocols<ul>
-<li>Bit-Map Protocol：<img src="http://www.cs.zju.edu.cn/network/courseware/netbase/chap4/images/fig4-6.jpg" alt="tp"><br>竞争周期由N个间隙组成，站点j可以在时隙j填入1bit，表明有1帧发送，然后按照顺序发送。效率=d/(N+d),N每帧开销，d数据量/帧，高负荷下N=1</li>
-<li>Token Ring： 就是令牌在环形总线中传递，只有拿到令牌的节点才能发送数据</li>
-<li>Binary Countdown：每一个站点产生一个二进制地址，如0010，0100，1001。站点在每一个位时间按序发送一个bit，在发送时这些地址被取或返回。<br>第一个位时间发送0，0，1，取或后，0010和0100看到了1，则他们知道有高序地址在竞争，就放弃发送。1001发送帧之后，开始新一轮竞争。效率为d/(d+log<sub>2</sub>N)</li>
-<li>Limited-Contention Protocol: 在低载荷时采用竞争法使时延较短，在重载荷时采用无冲突法，使信道利用率较高，</li>
-</ul>
-</li>
-<li>IP地址与MAC地址的区别<ul>
-<li>IP地址是指互联网协议地址（Internet Protocol Address），长32位，是分配给网络和主机的逻辑地址</li>
-<li>MAC地址是指物理地址、硬件地址，是烧到网卡里的，具有全球唯一性</li>
-</ul>
-</li>
-<li>二级交换机<ul>
-<li>设A1，A2为同处VLAN1的PC，B1，B2为同处VLAN2的PC，且它们均连在了交换机S1，S1与路由器R1相连。</li>
-<li>VLAN内通信：A1给A2发送信息<ul>
-<li>交换机收到A1的数据帧，分析报头，得到目标MAC地址。</li>
-<li>交换机在内部的MAC地址表中查找对应端口A2，若找到，则发送给A2；若未找到，则向VLAN1内所有端口(A2,R1)进行广播，收到A2回应后，将A2加入到MAC地址表中，并发送帧给A2</li>
-<li>交换机可以建立记录和维护地址表。这也称为交换机学习能力(auto learn)</li>
-</ul>
-</li>
-<li>VLAN间通信：A1给B1发送信息<ul>
-<li>交换机收到A1的数据帧，分析报头，得到目标MAC地址</li>
-<li>交换机查找对应端口，如果地址表中记录端口对应路由器，则发送给路由器；否则则向VLAN1内所有端口(A2,A3,R1)进行广播，路由器分析知B1属于Vlan2，则回应交换机。交换机将路由器地址加入到对应的表中，把帧发送给路由器</li>
-<li>路由器通过交换机Vlan2把帧发给B1</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>三级交换机<ul>
-<li>网络内通信：设A1，A2为同处网络1的PC，B1，B2为同处网络2的PC，且它们均连在了交换机S1。<ul>
-<li>A1使用A2的IP地址和子网掩码取得A2的网络地址(IP地址 &amp; 子网掩码)，确定它们属于同一网段</li>
-<li>A1给A2发送ARP，得到A2返回的MAC，A1用A2的MAC封装数据包，发送给交换机。</li>
-<li>交换机用二层交换，查找MAC地址表，转发数据包</li>
-</ul>
-</li>
-<li>网络间通信：<ul>
-<li>A1使用B1的IP与子网，确定不在一个子网内</li>
-<li>A1将数据包发送给缺省网关(即交换机的三层路由)</li>
-<li>路由通过查询路由表，以缺省网关的MAC为源地址，以B1的MAC地址为目标MAC，构建新帧头。</li>
-<li>三层路由将A1与B1的MAC地址以及转发端口的对应关系加入地址映射表中</li>
-<li>A1发送给B1的数据将可以直接通过二层交换进行。(一次路由，多次转发)</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>CSMA/CA<ul>
-<li>包括载波监听(CSMA)与冲突避免(CA)</li>
-<li>发送之前开始监听，若信道为空，则等待一个帧间隔，再次监听，若空，则开始<a href="#binary">随机后退</a>，结束后再次监听，若空则发送数据。以上任一阶段不空，则停止本次发送。之后重新开始本过程</li>
-<li>帧间隔分为SIFS、PIFS、DIFS、EIFS，优先级依次降低。<a href="http://www.rfwireless-world.com/Terminology/WLAN-SIFS-vs-PIFS-vs-DIFS-vs-EIFS-vs-AIFS.html" target="_blank" rel="noopener">参见</a><ul>
-<li>SIFS：control frame or next fragment (ACK CTS)</li>
-<li>PIFS: PCF frames (用以获得在无竞争访问周期启动时访问信道的优先权)</li>
-<li>DIFS: DCF frames (一般数据帧和管理帧)</li>
-<li>EIFS: Bad frame recovery</li>
-</ul>
-</li>
-<li>当一个站发送第一个帧时并且检测到此时信道为空，则不进行二进制退避</li>
-</ul>
-</li>
-<li>网桥的自学习与转发<ul>
-<li>当网桥收到一个帧时，就在自己的转发表中进行查找，若没有，则将(地址，端口)加入到表中</li>
-<li>当网桥转发一个帧时，也查找自己的转发表，若没有，则从其他端口进行转发；若有，则将该端口与该帧进入网桥的端口进行比较，若相等，则丢弃该帧，因为目的主机已经收到了，否则转发。</li>
-</ul>
-</li>
-<li>Spanning Tree Bridges (STP,生成树协议)<ul>
-<li>交换网络互联，会造成网络环路，引发广播风暴。</li>
-<li>STP就是把环形结构变成一个树形结构，在逻辑上阻塞一些端口</li>
-<li>依据网桥ID(由网桥优先级和网桥MAC地址决定)选择根网桥(小者优先)</li>
-<li>依据根路径成本选择根端口和指定端口</li>
-</ul>
-</li>
-<li>MACA(Multiple Access with Collision Avoidance)协议(冲突避免多路访问)<ul>
-<li>RTS(Request To Send)帧，该帧由发送方发送，包含了随后将要发送的数据帧的长度</li>
-<li>CTS(Clear to Send)帧，由接收到RTS的站点返回，包含了数据长度(从RTS复制)</li>
-<li>发送方收到CTS后开始发送</li>
-<li>其他站收到RTS，则保持沉默，至少等待足够长的时间以便在无冲突的情况下CTS返回给A。</li>
-<li>如果其他站收到CTS，则它可以检查CTS帧获得数据帧长度，保持沉默在接下来的数据传输中</li>
-<li>收到RTS但没有收到CTS的站点可以在数据帧传输过程中自由发送任何信息</li>
-<li>收到CTS帧，则无论是否收到RTS帧，都要延缓发送任何信息直到那个帧如期传送完毕</li>
-</ul>
-</li>
-<li>名词解析<ul>
-<li>Application layer: Application gateway</li>
-<li>Transport layer: Transport gateway</li>
-<li>Network layer: Router(路由器)</li>
-<li>Data link layer: Bridge(桥接器), switch(交换机)</li>
-<li>Physical layer: Repeater(中继器，延长网络距离), hub(集线器,连接多个设备)</li>
-</ul>
-</li>
-<li>Frame header、<em>Packet header、TCP header、User data</em>、CRC。<em>斜体</em>是packet，由网络层构建，整个是Frame，由数据链路层构建</li>
-<li><p><a href="https://blog.csdn.net/phunxm/article/details/9498829" target="_blank" rel="noopener">VLAN</a>，讲的很详细，摘抄一点如下</p>
-<h2 id="习题解析"><a href="#习题解析" class="headerlink" title="习题解析"></a>习题解析</h2></li>
-<li><p>A group of N stations share a 56-kbps pure ALOHA channel. Each station outputs a 1000-bit frame on an average of once every 100 sec, even if the previous one has not yet been sent (e.g., the stations can buffer outgoing frames). What is the maximum value of N?</p>
-<ul>
-<li>思路：计算出纯ALOHA的带宽，以及每个站需要的带宽。</li>
-<li>纯ALOHA的带宽=信道利用率(0.184)x56kb/s，站点需要的带宽为1000bit/100sec=10b/s</li>
-</ul>
-</li>
-<li>What is the baud rate of the standard 10-Mbps Ethernet?<ul>
-<li>以太网标准10M 802.3 LAN采用曼彻斯特编码，即每一位都有两个信号周期，所以为20Mbaud</li>
-</ul>
-</li>
-<li>Consider building a CSMA/CD network running at 10 Mbps over a 1-km cable with no repeaters. The signal speed in the cable is 200,000 km/sec. What is the minimum frame size? <ul>
-<li>信号传输时间t=1km / 200000km/sec，最小发送时间为2t，则最小帧为2t*1G。</li>
-</ul>
-</li>
-<li>The reason for binary exponential backoff in the classical Ethernet is that this algorithm is adaptive to network load</li>
-<li>A network interface card mainly works at physical and data link</li>
-<li>1000Base-F network: Fiber Optics</li>
 </ol>
 
       
@@ -538,6 +492,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+        </div>
+      
 
       
       
@@ -547,8 +507,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/01/自动登录脚本/" rel="next" title="自动登录脚本">
-                <i class="fa fa-chevron-left"></i> 自动登录脚本
+              <a href="/2018/12/08/一周总结-四/" rel="next" title="一周总结(四)">
+                <i class="fa fa-chevron-left"></i> 一周总结(四)
               </a>
             
           </div>
@@ -557,8 +517,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/22/一周总结-五/" rel="prev" title="一周总结(五)">
-                一周总结(五) <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/22/一周总结-六/" rel="prev" title="一周总结(六)">
+                一周总结(六) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -709,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概念解析以及习题分析"><span class="nav-number">2.</span> <span class="nav-text">概念解析以及习题分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#习题解析"><span class="nav-number">3.</span> <span class="nav-text">习题解析</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统服务"><span class="nav-number">2.</span> <span class="nav-text">操作系统服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-Operating-System-Interface"><span class="nav-number">3.</span> <span class="nav-text">User Operating System Interface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#System-Service"><span class="nav-number">4.</span> <span class="nav-text">System Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linkers-and-Loaders"><span class="nav-number">5.</span> <span class="nav-text">Linkers and Loaders</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operating-System-Structure"><span class="nav-number">6.</span> <span class="nav-text">Operating System Structure</span></a></li></ol></div>
             
 
           </div>
