@@ -108,25 +108,24 @@
 
 
 
-  <meta name="description" content="前言迟到了好久的总结。。。本部分为计算机网络。">
+  <meta name="description" content="the blog">
 <meta name="keywords" content="server">
-<meta property="og:type" content="article">
-<meta property="og:title" content="一周总结(二)">
-<meta property="og:url" content="http://yoursite.com/2018/10/31/一周总结-二/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ChangL-Blog">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="ChangL-Blog">
-<meta property="og:description" content="前言迟到了好久的总结。。。本部分为计算机网络。">
+<meta property="og:description" content="the blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-11-05T16:57:32.806Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一周总结(二)">
-<meta name="twitter:description" content="前言迟到了好久的总结。。。本部分为计算机网络。">
+<meta name="twitter:title" content="ChangL-Blog">
+<meta name="twitter:description" content="the blog">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/31/一周总结-二/"/>
+  <link rel="canonical" href="http://yoursite.com/page/2/"/>
 
 
 
@@ -136,7 +135,7 @@
   };
 </script>
 
-  <title>一周总结(二) | ChangL-Blog</title>
+  <title>ChangL-Blog</title>
   
 
 
@@ -183,7 +182,8 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -284,9 +284,9 @@
           
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -318,7 +318,11 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一周总结(二)
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/31/一周总结-二/" itemprop="url">
+                  一周总结(二)
+                </a>
               
             
           </h1>
@@ -393,50 +397,16 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>迟到了好久的总结。。。本部分为计算机网络。<br><a id="more"></a></p>
-<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><ol>
-<li>信道利用率<br>$$ Efficiency = \frac{Transmission\ time\ of\ packet}<br>{Transmission\ time\ of\ packet + 2 * Propagation\ delay} $$<ol>
-<li>A channel has a bit rate of 4 kbps and one-way propagation delay of 20 ms. The channel uses stop and wait protocol. The transmission time of the acknowledgement frame is negligible. To get a channel efficiency of at least 50%, the minimum frame size should be: <ul>
-<li>这道题中可以设传输时间为x，由上述公式，得：<br>$$ 0.5 = \frac{x}{x+2*20*10^{-3}} $$<br>得x=\( 40*10^{-3}\)，再结合bit rate为4 kbps得到结果为160bits</li>
-</ul>
-</li>
-<li>Consider an error-free 64-kbps satellite channel used to send 512-byte data frames in one direction, with very short acknowledgements coming back the other way. What is the maximum throughput for window sizes of 1, 7, 15, and 127? The earth-satellite propagation time is 270 msec<ul>
-<li>一个传输周期T = 第一个帧的传输时延+第一个帧的传播时延+确认帧的传输时延+确认帧的传播时延<br>这里不考虑确认帧的传输时延，但考虑传播时延。计算得周期T为 \( 270*2+512Byte/64kbps=604ms \)。<br>发送一帧为64ms，因此需要604/64=9帧保持通道不空。每604ms发送(窗口值*512Byte*8)bit,<br>注意这里的窗口值若超过9(如15、128)，吞吐量也只是最大值64kbps。</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>T1速率125us传送193位的帧</li>
-<li>CRC的checksum是多项式的最高次幂</li>
-<li>sequence number(n) 与maximum number of outstanding sending frames(M)的关系<ul>
-<li>go back N: $$ M = 2^n - 1 $$</li>
-<li>selective repeat $$ M = 2^{n-1} -1 $$</li>
-</ul>
-</li>
-<li>Wait and Stop、 Go back N 和 Selective repeat总结<br>这三种实际上是发送窗口与接收窗口大小的区别。发送方将窗口里的帧挨个发送，如果收到nck或者当计时器超时时未收到ack，就重新发送该号帧。发送方接收到AckR<sub>n</sub>，则表示AckR<sub>n</sub>之前的帧已经被接收方收到。接收方将帧按号放入接收窗口，并发送ack，当接收到的帧与接收窗口当前的号不同时，就返回nak，表明有帧未收到需重传。窗口大小与sequence number的bit位数有关。发送方维护一个Slast(\( S_n \))，表明将要发送的帧，每发送完一帧后更新值+1，接收方维护Rnext(\( R_n \)),每接收到一帧后更新值+1。<ol>
-<li>Wait-and-Stop      <ul>
-<li>发送方与接收方窗口大小均为1。</li>
-<li>发送方按照S<sub>n</sub>发送帧，启动计时器，并更新S<sub>n</sub>。发送方比较ack与S<sub>n</sub>确认帧被接收，可以发送下一帧，并停止计时器。当计时器超时，发送方重新发送S<sub>n</sub>帧，并重新启动计时器。</li>
-<li>接收方没有计时器。每当接收到帧，就比较帧号与R<sub>n</sub>是否相等，若是则将该帧上传，并更新R<sub>n</sub>，同时发送ackR<sub>n</sub>。</li>
-<li>这种方法效率较低。假设传播延时为τ sec，帧大小为L bits，带宽为r bit/sec，忽略control frame和传输延时则它发送Lbits然后等待至少2τ+L/r sec。</li>
-</ul>
-</li>
-<li>Go-Back-N<ul>
-<li>发送方的窗口为小于2<sup>m</sup>(不能等于)，接收方的窗口大小为1。m为sequence number 的bit位数。</li>
-<li>发送方需要维护S<sub>f</sub>，表示最后发送的帧号。S<sub>f</sub>与S<sub>n</sub>的差要小于窗口大小。发送方发送帧后，更新S<sub>n</sub>，如果此时计时器未启动，则启动计时器。发送方接收到ack后要判断ack在发送窗口中，然后更新S<sub>f</sub>为ack+1，并停止计时器。如果计时器超时，则重新启动计时器，并重新发送S<sub>f</sub>与S<sub>n</sub>之间的帧。</li>
-<li>接收方与Wait-and-Stop相同。</li>
-</ul>
-</li>
-<li>Selective Repeat<ul>
-<li>发送方与接收方的窗口最大为2<sup>m-1</sup></li>
-<li>发送方每个帧都有一个计时器。每发送一个帧，更新S<sub>n</sub>，并启动对应的计时器Timer<sub>n</sub>。如果接收到nak在窗口范围(<sub>f</sub>到<sub>n</sub>)内，则重新发送nak号帧，并启动timer<sub>nak</sub>。如果接收到的ack在窗口范围内，则停止S<sub>f</sub>到ack的计时器，并更新S<sub>f</sub>为ack。当某个计时器超时，则重新启动该号计时器，并发送该号帧。</li>
-<li>接收方需要维护NakSent(bool，初始为false，表示未发送Nak)。需要维护一个slot数组(大小为窗口大小，初始为false)。维护一个AckNeeded(bool，初始为false，表示不需要发送ack)接收到的帧号不为R<sub>n</sub>,并且NakSent为false，则发送NakR<sub>n</sub>，并置NakSent为true。如果接收到的帧号seqNo在窗口中，并且slot[seqNo]为false(未标记)，则保存该帧，并且标记slot[seqNo]为true。接着若slot[R<sub>n</sub>]为true，则上传R<sub>n</sub>号帧给上一层，置AckNeeded为true。并使R<sub>n</sub>+1，接着判断。接下来，判断AckNeeded，若为true，则发送AckR<sub>n</sub>，并置AckNeeded和NakSent为false。</li>
-</ul>
-</li>
-</ol>
-</li>
-</ol>
-
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>迟到了好久的总结。。。本部分为计算机网络。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/31/一周总结-二/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -456,32 +426,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/10/20/一周总结-一/" rel="next" title="一周总结(一)">
-                <i class="fa fa-chevron-left"></i> 一周总结(一)
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/06/一周总结-三/" rel="prev" title="一周总结(三)">
-                一周总结(三) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -491,15 +441,486 @@
   </article>
 
 
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/一周总结-一/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chang L">
+      <meta itemprop="description" content="the blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChangL-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/20/一周总结-一/" itemprop="url">
+                  一周总结(一)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-20 15:13:17" itemprop="dateCreated datePublished" datetime="2018-10-20T15:13:17+08:00">2018-10-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-30 19:10:49" itemprop="dateModified" datetime="2018-10-30T19:10:49+08:00">2018-10-30</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/20/一周总结-一/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chang L">
+      <meta itemprop="description" content="the blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChangL-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/11/Linux/" itemprop="url">
+                  服务器相关教程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-11 00:56:19" itemprop="dateCreated datePublished" datetime="2018-10-11T00:56:19+08:00">2018-10-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-07 10:22:48" itemprop="dateModified" datetime="2018-11-07T10:22:48+08:00">2018-11-07</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>之前购买了个服务器，捣鼓了几个月后被封了。。。<br>因此本篇记录了新建服务器中配置ssh，git，flask等相关操作，以备后用<br><br>很多地方比较简略，欢迎讨论</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/11/Linux/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chang L">
+      <meta itemprop="description" content="the blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChangL-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/11/hello-world/" itemprop="url">
+                  Hello World
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-11 00:52:57" itemprop="dateCreated datePublished" datetime="2018-10-11T00:52:57+08:00">2018-10-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-17 15:30:07" itemprop="dateModified" datetime="2018-10-17T15:30:07+08:00">2018-10-17</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><br>Hexo’s own article<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/11/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -520,17 +941,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -615,22 +1027,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算机网络"><span class="nav-number">2.</span> <span class="nav-text">计算机网络</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -768,10 +1164,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
-
-
 
   
 
@@ -811,6 +1203,18 @@
   
 
   
+  
+    
+      
+        
+      
+    
+      
+    
+      
+    
+      
+    
   
 
   

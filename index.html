@@ -625,6 +625,920 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/19/一周总结-十/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chang L">
+      <meta itemprop="description" content="the blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChangL-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/19/一周总结-十/" itemprop="url">
+                  一周总结(十)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-19 21:16:29" itemprop="dateCreated datePublished" datetime="2018-12-19T21:16:29+08:00">2018-12-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-20 23:41:41" itemprop="dateModified" datetime="2018-12-20T23:41:41+08:00">2018-12-20</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>本次总结是操作系统进程同步的相关知识点总结
+</code></pre><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ol>
+<li>原子操作(Atomic operation): an operation that completes in its entirety without interruption</li>
+<li>竞争资源的控制问题：<ul>
+<li>互斥(mutual exelusion): 多个进程不能同时使用一个资源</li>
+<li>死锁(deadlock): 多个进程互相等待，永远都得不到足够的资源。</li>
+<li>饥饿(starvation): 一个进程长时间得不到资源</li>
+</ul>
+</li>
+<li>进程并发执行导致竞争引发互斥问题，进程合作引发同步问题</li>
+<li><p>critical-session(临界区)</p>
+<ul>
+<li>code segment where the shared data is accessed. (访问临界资源的代码)</li>
+<li>当某个进程在执行临界区代码时，其他进程不许执行这段代码</li>
+<li>临界资源: 一次只允许一个进程使用(访问)的资源：硬件打印机，软件的消息缓冲队列、变量、数组、缓冲区</li>
+<li><p>伪代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    entry section    <span class="comment">//进入区</span></span><br><span class="line">    critical section <span class="comment">//临界区</span></span><br><span class="line">    <span class="built_in">exit</span> section     <span class="comment">//退出区</span></span><br><span class="line">    reminder section <span class="comment">//剩余区</span></span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决方案</p>
+<ul>
+<li>互斥(Mutual Exclusion)： 当进程运行临界区时，不许其他进程进入临界区</li>
+<li>空闲让进(Progress)：没有进程运行临界区时，并且存在其他要进入临界区的进程时，则应当使得某个进程进入临界区 </li>
+<li>有限等待(bounded waiting)</li>
+<li>让权等待(非必须)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Peterson算法(两个进程访问一个共享资源)</p>
+<ol>
+<li><p>算法1</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> turn =<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">P0:</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(turn != <span class="number">0</span>);</span><br><span class="line">    critical section;</span><br><span class="line">    turn = <span class="number">1</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">P1:</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">while</span>(turn != <span class="number">1</span>);</span><br><span class="line">    critical section;</span><br><span class="line">    turn = <span class="number">0</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>  解决了互斥，但空闲让进未解决<br>  强制轮流进入临界区；容易造成资源利用不充分，同一进程不能连续两次进入临界区</p>
+<ol start="2">
+<li><p>算法2</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag[<span class="number">2</span>]&#123;<span class="literal">false</span>,<span class="literal">false</span>&#125;;</span><br><span class="line"></span><br><span class="line">P0:</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    flag[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span>(flag[<span class="number">1</span>]);</span><br><span class="line">    critical section;</span><br><span class="line">    flag[<span class="number">0</span>]=flase;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">p1:</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    flag[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">while</span>(flag[<span class="number">0</span>]);</span><br><span class="line">    critical section;</span><br><span class="line">    flag[<span class="number">1</span>]=<span class="literal">false</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>解决了互斥，但空闲让进未解决<br>两个进程可能都进不了临界区</p>
+</li>
+<li><p>算法2.1</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag[<span class="number">2</span>]&#123;<span class="literal">false</span>,<span class="literal">false</span>&#125;;</span><br><span class="line"></span><br><span class="line">P0:</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(flag[<span class="number">1</span>]);</span><br><span class="line">    flag[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    critical section;</span><br><span class="line">    flag[<span class="number">0</span>] = <span class="literal">false</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">p1:</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(flag[<span class="number">0</span>]);</span><br><span class="line">    flag[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    critical section;</span><br><span class="line">    flag[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>解决了空闲等待，但互斥出了问题<br>P0和P1可能同时进入临界区</p>
+</li>
+<li><p>Peterson算法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> turn = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">bool</span> flag[<span class="number">2</span>]&#123;<span class="literal">false</span>,<span class="literal">false</span>&#125;;</span><br><span class="line"></span><br><span class="line">P0:</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    flag[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    turn = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(flag[<span class="number">1</span>] &amp;&amp; turn == <span class="number">1</span>);</span><br><span class="line">    critiacl section;</span><br><span class="line">    flag[<span class="number">0</span>] = <span class="literal">false</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">P1:</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    flag[<span class="number">1</span>] = <span class="literal">true</span>;</span><br><span class="line">    turn = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(flag[<span class="number">0</span>] &amp;&amp; turn == <span class="number">0</span>);</span><br><span class="line">    critical section;</span><br><span class="line">    flag[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>解决了所有问题</p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Blkery Algorithm(面包房算法)</p>
+<ul>
+<li>解决多线程临界区问题</li>
+<li>每个进入临界区的进程都分配了一个数字，最小的数字进入临界区</li>
+<li>如果P<sub>i</sub>和P<sub>j</sub>有相同的数字，则min(i,j)先进入</li>
+<li>分配给线程的数字按照递增序生成</li>
+<li>伪代码   <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// choosing[i] = true, 表示进程i正在获取它的排队登记号</span></span><br><span class="line"><span class="keyword">bool</span> choosing[n];</span><br><span class="line"><span class="comment">// number[i]是进程i的当前排队登记号，如果为0，表示它不需要进入临界区</span></span><br><span class="line"><span class="keyword">int</span> number[n];</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    choosing[i] = <span class="literal">true</span>;</span><br><span class="line">    number[i] = max(number,number+n) + <span class="number">1</span>;</span><br><span class="line">    choosing[i] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(choosing[j]);</span><br><span class="line">        <span class="keyword">while</span>((number[j] != <span class="number">0</span>) &amp;&amp; (number[j],j)&lt;(number[i],i));</span><br><span class="line">    &#125;</span><br><span class="line">    critical section;</span><br><span class="line">    number[i] = <span class="number">0</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>硬件同步(Synchronization Hardware)</p>
+<ul>
+<li>Uniprocessors disable interrupts:进程运行没有抢占</li>
+<li><p>Test-and-Set： </p>
+<ul>
+<li><p>测试并修改word(原子操作)</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">TestAndSet</span><span class="params">(<span class="keyword">bool</span> &amp;target)</span></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> rv = target;</span><br><span class="line">    target = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> rv;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">bool</span> lock = <span class="literal">false</span>;</span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">while</span>(TestAndSet(lock));</span><br><span class="line">    critical section;</span><br><span class="line">    lock = <span class="literal">false</span>;</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>交换两个变量(原子操作)</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">     <span class="function"><span class="keyword">void</span> <span class="title">Swap</span><span class="params">(<span class="keyword">bool</span>* a, <span class="keyword">bool</span>* b)</span></span>&#123;</span><br><span class="line">         <span class="keyword">bool</span> tmp = *a;</span><br><span class="line">         *a = *b;</span><br><span class="line">         *b = tmp; </span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">bool</span> lock;</span><br><span class="line">     <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">         key = <span class="literal">true</span>;</span><br><span class="line">         <span class="keyword">while</span>(key == <span class="literal">true</span>)</span><br><span class="line">             Swap(&amp;lock,&amp;key);</span><br><span class="line">         critical section;</span><br><span class="line">         lock = <span class="literal">false</span>;</span><br><span class="line">         remainder section;</span><br><span class="line">     &#125;</span><br><span class="line">     ``` </span><br><span class="line">- 优点</span><br><span class="line">  + 适用于任意数目的进程，包括单处理器和多处理器</span><br><span class="line">  + 简单</span><br><span class="line">  + 支持进程内存中多个临界区</span><br><span class="line">- 缺点</span><br><span class="line">  + 等待要耗费CPU时间，不能让权等待</span><br><span class="line">  + 可能饥饿，因为是随机选中的进程</span><br><span class="line">  + 可能死锁，单处理机时P1执行swap进入临界区，此时拥有更高优先级的P2执行并中断P1，且申请P1所占用的资源，但此时P2无法申请到，且P1得不到CPU。</span><br><span class="line">- Bounded-waiting mutual exclusion with TestAndSet </span><br><span class="line">     ``` c++</span><br><span class="line">     <span class="keyword">bool</span> waiting[n]&#123;<span class="literal">false</span>&#125;,lock=<span class="literal">false</span>;</span><br><span class="line">     <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">         waiting[i] = <span class="literal">true</span>;</span><br><span class="line">         key = <span class="literal">true</span>;</span><br><span class="line">         <span class="keyword">while</span>(waiting[i] &amp;&amp; key) key = TestAndSet(lock);</span><br><span class="line">         waiting[i] = <span class="literal">false</span>;</span><br><span class="line">         critical section;</span><br><span class="line">         j = (i + <span class="number">1</span>) % n;</span><br><span class="line">         <span class="comment">// choose next process to enter critical section</span></span><br><span class="line">         <span class="comment">// choose j which waiting[j] = false</span></span><br><span class="line">         <span class="keyword">while</span>(j != i &amp;&amp; !waiting[j]) j = (j + <span class="number">1</span>) % n;</span><br><span class="line">         <span class="keyword">if</span> (j == i) lock = <span class="literal">false</span>;</span><br><span class="line">         <span class="keyword">else</span> waiting[j] = <span class="literal">false</span>;</span><br><span class="line">         remainder section;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+<p> 满足所有临界区要求；</p>
+</li>
+</ul>
+</li>
+<li>自旋锁：自旋锁是一个与共用数据结构有关的锁定机制。当线程试图获得自旋锁时，在处理器上所有其它工作将终止。因此拥有自旋锁的线程永远不会被抢先，但允许它继续执行以便使它尽快把锁释放。内核对于使用自旋锁十分小心，当它拥有自旋锁时，它执行的指令数将减至最少</li>
+</ul>
+</li>
+<li><p>信号量(Semaphores)机制</p>
+<ul>
+<li>简单，且同步不需要忙等待</li>
+<li>计数(counting)信号量：integer value(S) 可以在一个无限区间里变化</li>
+<li>记录型(record)信号量</li>
+<li>AND型信号量 </li>
+<li>二值(binary)信号量： S只能是0 或 1；实现简单(mutex locks)</li>
+<li><p>整型(integer)信号量</p>
+<ul>
+<li><p>原子操作P(wait) V(signal)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wait(S)&#123;</span><br><span class="line">     <span class="keyword">while</span> (S &lt;= <span class="number">0</span>);</span><br><span class="line">     S--;</span><br><span class="line">&#125;</span><br><span class="line">signal(S)&#123;</span><br><span class="line">     S++; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>互斥</p>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Semaphore mutex = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    wait(mutex);</span><br><span class="line">    critical section;</span><br><span class="line">    signal(mutex);</span><br><span class="line">    remainder section;</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>record semaphore</p>
+   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="comment">// value &gt;0 表示有value个资源可用</span></span><br><span class="line">    <span class="comment">// value =0 表示无资源可用(不许进入临界区)</span></span><br><span class="line">    <span class="comment">// value &lt;0 表示有-value个进程在等待队列</span></span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">process</span> *<span class="title">list</span>;</span></span><br><span class="line">&#125;semaphore; <span class="comment">//资源或者临界区</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>block() process: running -&gt; waiting</li>
+<li>wakeup() process: waiting -&gt; ready</li>
+<li><p>wait（申请）(wait(S) \equiv P(S) \equiv down(S)) and signal（释放） (signal(S) \equiv V(S) \equiv up(S));</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">wait(semaphore *S)&#123;</span><br><span class="line">    S-&gt;value--;</span><br><span class="line">    <span class="keyword">if</span>(S-&gt;value &lt; <span class="number">0</span>)&#123;</span><br><span class="line">        S-&gt;<span class="built_in">list</span>-&gt;add(process);</span><br><span class="line">        block();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">signal(semaphore *S)&#123;</span><br><span class="line">    S-&gt;value++;</span><br><span class="line">    <span class="keyword">if</span>(S-&gt;value &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">// P is a process in list which wait for critical session</span></span><br><span class="line">        S-&gt;<span class="built_in">list</span>-&gt;remove(P);</span><br><span class="line">        wakeup(P);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>wait和signal必须成对出现。互斥时他们同处于同一进程；同步时则不在同一进程中出现</p>
+</li>
+<li>相邻wait操作的顺序至关重要，相邻signal则无关紧要。同步wait在互斥wait前</li>
+<li>优点：简单，表达能力强</li>
+<li>缺点：不够安全；使用不当会死锁；实现复杂</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Bounded-Buffer(生产者-消费者) Problem</p>
+<ul>
+<li>一组生产者（P1 ……Pm）向一组消费者（C1……Cq）提供消息。它们共享一个有限缓冲池（bounded buffer pool）,生产者向其中投放消息，消费者从中取得消息</li>
+<li>N个buffer，每个可以有一个item</li>
+<li>三个semaphore：mutex = 1; full = 0; empty = N;</li>
+<li>伪代码：   <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">Semaphore mutex = <span class="number">1</span>, full = <span class="number">0</span>, empty = N;</span><br><span class="line"><span class="comment">// the buffer is critical sessioin; mutual exclusion</span></span><br><span class="line"><span class="comment">// Producer Process</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    produce an item in nextp</span><br><span class="line">    ...</span><br><span class="line">    wait(empty); </span><br><span class="line">    wait(mutex);</span><br><span class="line">    ...</span><br><span class="line">    add nextp to buffer</span><br><span class="line">    ...</span><br><span class="line">    signal(mutex);</span><br><span class="line">    signal(full);</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Consumer Process</span></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    wait(full);</span><br><span class="line">    wait(mutex);</span><br><span class="line">    ...</span><br><span class="line">    remove an item from buffer to nextc</span><br><span class="line">    ...</span><br><span class="line">    signal(mutex);</span><br><span class="line">    signal(empty);</span><br><span class="line">    ...</span><br><span class="line">    consume the item in nextc</span><br><span class="line">    ...</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Readers and Writers(读者写者) Problem</p>
+<ul>
+<li>Readers(读者) 只读数据集，不写：只要求读取数据的进程；几个读者可以同时读数据，不需要互斥</li>
+<li>Writers(写者) 既读又写：要求修改数据的进程；一个写者不能和其他进程同时访问数据，必须互斥</li>
+<li><p>读者优先伪代码</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// mutex for readcount</span></span><br><span class="line">Semaphore mutex = <span class="number">1</span>, wrt = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> readcount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// writer Process</span></span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    wait(wrt);</span><br><span class="line">    writing ...</span><br><span class="line">    signal(wrt);</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Reader Process</span></span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    wait(mutex);</span><br><span class="line">    readcount++;</span><br><span class="line">    <span class="comment">// 第一个读者读时阻止写者写</span></span><br><span class="line">    <span class="comment">// 后续读者读时wrt未释放，写者依然无法写入：读者优先</span></span><br><span class="line">    <span class="keyword">if</span>(readcount == <span class="number">1</span>)</span><br><span class="line">        wait(wrt);</span><br><span class="line">    signal(mutex);</span><br><span class="line">    reading ...</span><br><span class="line"></span><br><span class="line">    wait(mutex);</span><br><span class="line">    readcount--;</span><br><span class="line">    <span class="comment">// 最后一个读者应该释放wrt</span></span><br><span class="line">    <span class="keyword">if</span>(readcount == <span class="number">0</span>)</span><br><span class="line">        signal(wrt);</span><br><span class="line">    signal(mutex);</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写者优先伪代码</p>
+  <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">// mutex for readcount</span></span><br><span class="line">        <span class="comment">// w: write first</span></span><br><span class="line">        Semaphore mutex = <span class="number">1</span>, wrt = <span class="number">1</span>, w =<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> readcount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// writer Process</span></span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            wait(w); <span class="comment">//无写进程时进入</span></span><br><span class="line">            wait(wrt);</span><br><span class="line">            writing ...</span><br><span class="line">            signal(wrt);</span><br><span class="line">            signal(w);</span><br><span class="line">        &#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Reader Process</span></span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            wait(w); <span class="comment">//需等到无写进程时进入</span></span><br><span class="line">            wait(mutex);</span><br><span class="line">            readcount++;</span><br><span class="line">            <span class="comment">// 第一个读者读时阻止写者写,</span></span><br><span class="line">            <span class="keyword">if</span>(readcount == <span class="number">1</span>)</span><br><span class="line">                wait(wrt);</span><br><span class="line">            signal(mutex);</span><br><span class="line">            signal(w);</span><br><span class="line">            reading ...</span><br><span class="line"></span><br><span class="line">            wait(mutex);</span><br><span class="line">            readcount--;</span><br><span class="line">            <span class="comment">// 最后一个读者应该释放wrt</span></span><br><span class="line">            <span class="keyword">if</span>(readcount == <span class="number">0</span>)</span><br><span class="line">                signal(wrt);</span><br><span class="line">            signal(mutex);</span><br><span class="line">        &#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br><span class="line">        ```        </span><br><span class="line"><span class="number">11.</span> Dining-Philosophers(哲学家就餐) Problem</span><br><span class="line">    - N个哲学家在圆桌吃饭</span><br><span class="line">    - 每个哲学家与邻桌共享一双筷子</span><br><span class="line">    - 每个哲学家必须有两只筷子才能吃饭</span><br><span class="line">    - 邻居不能同时吃饭</span><br><span class="line">    - 哲学家轮流吃或者等待</span><br><span class="line">    - 伪代码</span><br><span class="line"></span><br><span class="line">        ``` c</span><br><span class="line">        Semaphore chopstick[n]&#123;<span class="number">1</span>,<span class="number">1</span>,..<span class="number">.1</span>&#125;;</span><br><span class="line">        <span class="keyword">do</span>&#123;</span><br><span class="line">            wait(chopstick[i]);</span><br><span class="line">            wait(chopstick[(i+<span class="number">1</span>) % n]);</span><br><span class="line">            ...</span><br><span class="line">            eat</span><br><span class="line">            ..</span><br><span class="line">            signal(chopstick[i]);</span><br><span class="line">            signal(chostick[(i+<span class="number">1</span>) % n])</span><br><span class="line">            ...</span><br><span class="line">            think</span><br><span class="line">            ...</span><br><span class="line">        &#125;<span class="keyword">while</span>(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>  可能会造成死锁和饥饿<br>  解决办法：</p>
+<pre><code>- 允许n-1个哲学家同时饥饿
+- 只有两只筷子都可用时才唤醒
+- 将哲学家分为三个状态：思考、饥饿、吃饭；并且一次拿两只筷子，或者不拿
+- 哲学家在拿起筷子一定时间后，若拿不到第二个筷子，就放下第一根筷子  
+</code></pre></li>
+</ul>
+</li>
+<li>管程</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/16/一周总结-九/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chang L">
+      <meta itemprop="description" content="the blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChangL-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/16/一周总结-九/" itemprop="url">
+                  一周总结(九)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-16 19:35:27 / 修改时间：22:47:08" itemprop="dateCreated datePublished" datetime="2018-12-16T19:35:27+08:00">2018-12-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>   本次总结为计算机网络中的网络层的相关概念与习题</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/16/一周总结-九/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/13/一周总结-八/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chang L">
+      <meta itemprop="description" content="the blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChangL-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/13/一周总结-八/" itemprop="url">
+                  一周总结(八)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-13 00:36:53" itemprop="dateCreated datePublished" datetime="2018-12-13T00:36:53+08:00">2018-12-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-16 19:36:15" itemprop="dateModified" datetime="2018-12-16T19:36:15+08:00">2018-12-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>有关操作系统cpu进程调度的概念总结
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/13/一周总结-八/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/12/面向对象的一些概念解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chang L">
+      <meta itemprop="description" content="the blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChangL-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/12/面向对象的一些概念解析/" itemprop="url">
+                  面向对象的一些概念解析
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-12 09:55:30 / 修改时间：14:58:27" itemprop="dateCreated datePublished" datetime="2018-12-12T09:55:30+08:00">2018-12-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>最近做题，总结一下关于c++面向对象的一些概念解析
+</code></pre><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
+<li>对象通过消息进行相互作用和通信，消息包括接受消息的对象，要执行的函数的名字，函数需要的参数，但不包括要执行的函数的内部结构</li>
+<li>c++本身没有输入输出语句</li>
+<li>函数的定义不能嵌套，但函数调用可以嵌套</li>
+<li>类A是类B的友元，则类A的成员函数可以访问类B的对象的任何成员</li>
+<li>每个static数据成员既可以与类相关联，也可以与类的对象相关联</li>
+<li>const成员函数不能作用于非const对象</li>
+</ol>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><ol>
+<li>虚函数是用virtual关键字说明的成员函数</li>
+<li>静态成员函数不能是虚函数，所以不能实现多态</li>
+<li>构造函数不可以为虚函数</li>
+<li>虚函数不能是类的静态成员</li>
+<li>重定义虚函数的派生类必须是公有继承的</li>
+<li>在派生类中，重载一个虚函数，要求函数名，参数的个数，参数的类型、参数的顺序和参数的返回值都必须相同</li>
+</ol>
+<h2 id="多态-·"><a href="#多态-·" class="headerlink" title="多态 ·"></a>多态 ·</h2><ol start="7">
+<li>运算符重载是通过函数定义实现的</li>
+<li>某些运算符必须重载为成员函数，如 new；某些必须重载为非成员函数如&gt;&gt;</li>
+<li>对单目运算符重载为友元函数时，可以说明一个形参。而重载为成员函数时，不能显式说明形参</li>
+<li>提取符: &gt;&gt; 插入符: &lt;&lt;</li>
+<li>含有纯虚函数的类称为抽象类</li>
+<li>在构造函数中调用虚函数不是动态联编</li>
+<li>重载的”[]”运算符应定义为<code>A&amp; operator[] (int);</code></li>
+<li>不能重载的运算符：.(成员访问运算符) .*(成员指针访问运算符) ::(域运算符) sizeof(长度运算符) ?:(条件运算符)</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/11/一周总结-七/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chang L">
+      <meta itemprop="description" content="the blog">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ChangL-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/11/一周总结-七/" itemprop="url">
+                  一周总结(七)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-12-11 00:47:23" itemprop="dateCreated datePublished" datetime="2018-12-11T00:47:23+08:00">2018-12-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-22 17:31:25" itemprop="dateModified" datetime="2018-12-22T17:31:25+08:00">2018-12-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>有关操作系统线程的一些概念，进程是资源拥有单位(Unit of Recource)和调度单位(Unit of Dispatching)
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/12/11/一周总结-七/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/08/一周总结-四/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1048,633 +1962,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/一周总结-二/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chang L">
-      <meta itemprop="description" content="the blog">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChangL-Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/31/一周总结-二/" itemprop="url">
-                  一周总结(二)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-31 21:03:23" itemprop="dateCreated datePublished" datetime="2018-10-31T21:03:23+08:00">2018-10-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-06 00:57:32" itemprop="dateModified" datetime="2018-11-06T00:57:32+08:00">2018-11-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>迟到了好久的总结。。。本部分为计算机网络。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/31/一周总结-二/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/一周总结-一/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chang L">
-      <meta itemprop="description" content="the blog">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChangL-Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/20/一周总结-一/" itemprop="url">
-                  一周总结(一)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-20 15:13:17" itemprop="dateCreated datePublished" datetime="2018-10-20T15:13:17+08:00">2018-10-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-30 19:10:49" itemprop="dateModified" datetime="2018-10-30T19:10:49+08:00">2018-10-30</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/20/一周总结-一/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/Linux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chang L">
-      <meta itemprop="description" content="the blog">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChangL-Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/11/Linux/" itemprop="url">
-                  服务器相关教程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-11 00:56:19" itemprop="dateCreated datePublished" datetime="2018-10-11T00:56:19+08:00">2018-10-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-11-07 10:22:48" itemprop="dateModified" datetime="2018-11-07T10:22:48+08:00">2018-11-07</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>之前购买了个服务器，捣鼓了几个月后被封了。。。<br>因此本篇记录了新建服务器中配置ssh，git，flask等相关操作，以备后用<br><br>很多地方比较简略，欢迎讨论</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/11/Linux/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chang L">
-      <meta itemprop="description" content="the blog">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ChangL-Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/11/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-11 00:52:57" itemprop="dateCreated datePublished" datetime="2018-10-11T00:52:57+08:00">2018-10-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-17 15:30:07" itemprop="dateModified" datetime="2018-10-17T15:30:07+08:00">2018-10-17</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br><br>Hexo’s own article<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/11/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1715,7 +2009,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1757,7 +2051,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1926,87 +2220,7 @@
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-        
-      
-    
-      
-    
-      
-    
-      
-    
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
-    });
-</script>
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.2"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -2025,7 +2239,63 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
     
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
   
 
 
