@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
-<meta name="keywords" content="server">
+  <meta name="description" content="前言有关操作系统cpu进程调度的概念总结">
+<meta name="keywords" content="操作系统,线程调度">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一周总结(一)">
-<meta property="og:url" content="http://yoursite.com/2018/10/20/一周总结-一/index.html">
+<meta property="og:title" content="一周总结(八)">
+<meta property="og:url" content="http://yoursite.com/2019/01/03/一周总结-八/index.html">
 <meta property="og:site_name" content="ChangL-Blog">
-<meta property="og:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta property="og:description" content="前言有关操作系统cpu进程调度的概念总结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-10-30T11:10:49.371Z">
+<meta property="og:updated_time" content="2019-01-03T09:57:03.523Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一周总结(一)">
-<meta name="twitter:description" content="前言本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。">
+<meta name="twitter:title" content="一周总结(八)">
+<meta name="twitter:description" content="前言有关操作系统cpu进程调度的概念总结">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/20/一周总结-一/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/03/一周总结-八/"/>
 
 
 
@@ -136,7 +136,7 @@
   };
 </script>
 
-  <title>一周总结(一) | ChangL-Blog</title>
+  <title>一周总结(八) | ChangL-Blog</title>
   
 
 
@@ -301,7 +301,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/20/一周总结-一/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/03/一周总结-八/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chang L">
@@ -318,7 +318,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一周总结(一)
+          <h1 class="post-title" itemprop="name headline">一周总结(八)
               
             
           </h1>
@@ -343,28 +343,30 @@
                 
               
 
-              <time title="创建时间：2018-10-20 15:13:17" itemprop="dateCreated datePublished" datetime="2018-10-20T15:13:17+08:00">2018-10-20</time>
+              <time title="创建时间：2019-01-03 17:57:03" itemprop="dateCreated datePublished" datetime="2019-01-03T17:57:03+08:00">2019-01-03</time>
             
 
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-10-30 19:10:49" itemprop="dateModified" datetime="2018-10-30T19:10:49+08:00">2018-10-30</time>
-              
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/操作系统/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -393,94 +395,123 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本系列为每周课后总结，主要包括计算机体系结构，操作系统和计算机网络三部分。</p>
-<a id="more"></a>
-<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><ol>
-<li><p>osi模型</p>
-<ol>
-<li>Physica：how to transmit signal (Coding) (bit)</li>
-<li>Datalink: two party communication (Ethernet) (frame)<br>&emsp;&emsp;<br>  dividing the transmitted bit stream into frames </li>
-<li>Network: Routing,Addressing (IP)(packet)<br>&emsp;&emsp;<br>  Determining which route through the subnet to use</li>
-<li>Transport: End-to-end communciation (TCP)(segment)</li>
-<li>Session: Establish/manage connection (SPDU)</li>
-<li>Presentation: ASCII Text,Sound (PPDU)</li>
-<li>Application: File transfer,Email,Remote Login (APDU)</li>
-</ol>
-</li>
-<li><p>波特率(baud rate)与比特率(bit rate)</p>
-<ol>
-<li>比特率：通信线路(或系统)单位时间(每秒)内传输的信息量，即每秒能传输的二进制位数，通常用Rb表示，<br>  其单位是比特/秒(bit/s或b/s，英文缩略语为bps)。当系统以每秒50个二进制符号传输时，信息速率为50bit/s，信号速率也为50Bd(波特)。</li>
-<li>波特率： 通信线路(或系统)单位时间(每秒)内传输的码元(脉冲)个数；或者表示信号调制过程中，单位时间内调制信号波形的变换次数，<br>  通常用RB表示，单位是波特(Bd或Baud，前者规范)。如果每秒传输1个码元就称为1Bd；如果1码元的时间长短为200ms，则每秒可传输5个码元，那么码元速率(波特率)就是5Bd。<br>   码元(code cell)是携带信息的数字单位，是指在数字信道中传送数字信号的一个波形符号，也即“时间轴上的一个信号编码单元”。码元可能是二进制的，也可能是多进制的。</li>
-<li>转换关系：Rb=RB*log<sub>2</sub>M<br>&emsp; M表示码元的进制</li>
-<li>How long was a bit on the original 802.3 standard in meters? Use a transmission speed of 10 Mbps and assume the propagation speed in coax is 2/3 the speed of light in vacuum.<br>&emsp;<br> 计算出bit的传播时间再乘以速率：1s/10Mbps*c*2/3=20m</li>
-</ol>
-</li>
-<li><p>best-case delay = 请求和应答总路程/光速</p>
-<ul>
-<li>A client-server system uses a satellite network, with the satellite at a height of 40,000 km. What is the best-case delay in response to a request?<br>&emsp;<br>由于请求和应答都必须通过卫星，因此传输总路径长度为 160,000 千米。在空气 和真空中的光速为 300，000 公里/秒， 因此最佳的传播延迟为 160,000/300，000 秒，约 533 msec。 </li>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><pre><code>有关操作系统cpu进程调度的概念总结
+</code></pre><a id="more"></a>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li>CPU(处理机、进程)调度</li>
+<li>Nonprescriptive(非抢占式)调度: 直到某进程运行完成或者阻塞时才把处理机分配给另一个进程<ul>
+<li>running -&gt; waiting</li>
+<li>terminate</li>
 </ul>
 </li>
-<li>A collection of five routers is to be connected in a point-to-point subnet. Between each pair of routers, the designers may put a high-speed line, a<br>medium-speed line, a low-speed line, or no line. If it takes 100 ms of computer time to generate and inspect each topology, how long will it take to inspect all of them?<br>&emsp; 将路由器称为 A，B，C，D 和 E.<br> 则有 10 条可能的线路；AB, AC, AD, AE, BC, BD, BE, CD, CE,和 DE 每条线路有 4 种可能性(3 速度或者不是线路)，拓扑的总数为 410 = 1,048,576。  检查每个拓扑需要 100 ms，全部检查总共需要 104,857. 6 秒，或者稍微超过 29 个小时。     </li>
-<li><p>面向连接服务(connection-oriented service)与无连接服务(connection-less service)</p>
-<p>1.面向连接服务：数据传输过程前必须经过建立连接、维护连接和释放连接的3个过 程；在数据传输过程中，各分组不需要携带目的节点的地址。面向连接服务的传输连接类似于一个通信管道，<br>发送者在一端放入数据，接受者从另一端取出数据。面向连接数据传输的收发数据顺序不变，因此传输的可<br>靠性好，但需通信开始前的链接开销，协议复杂，通信效率不高。<br><br>如virtual circuit service，电话系统，tcp</p>
-<ol start="2">
-<li>无连接服务:就是通信双方不需要事先建立一条通信线路，而是把每个带有目的地址的包（报文分组）送到线路上，由系统选定路线 进行传输。IP、UDP协议就是一种无连接协议，邮政系统是一个无连接的模式。 </li>
+<li>Preemptive(抢占式)调度: 系统基于某种原则(优先权、短进程优先、时间片)，剥夺当前进程的处理机，并分配给其他进程</li>
+<li>Dispatcher(调度程序): 分配处理器给短期调度选中的进程<ul>
+<li>切换上下文</li>
+<li>切换用户模式</li>
+<li>跳到用户程序所在位置开始执行</li>
+</ul>
+</li>
+<li>Dispatch latency(调度延迟): 调度程序停止一个进程到启动另一个进程的时间</li>
 </ol>
-</li>
-<li><p>多播(broadcasting)、广播(unicasting)与点对点(point-to-point)</p>
-</li>
-<li><p>信道传输速率</p>
-<ul>
-<li>Maximum signal rate for a channel (No Noise)<br>  -Nyquist Theorem: Bandwidth = W, Singal rate &lt;= 2 W (baud)</li>
-<li>Bilevel Encoding: Data rate = 2 * Bandwidth  (bps)</li>
-<li>Multilevel(M) Encoding:<br>  -Data rate = 2 * Bandwidth * log<sub>2</sub>M  (bps)</li>
-<li>Shannon’s Theorem<ul>
-<li>Bandwidth = H (Hz),  Signal-to-noise ratio = S/N<br><br>Maximum Data Rate = H * log<sub>2</sub>(1+S/N) (bps)无噪音情况下速率任意高</li>
+<h2 id="调度算法的准则"><a href="#调度算法的准则" class="headerlink" title="调度算法的准则"></a>调度算法的准则</h2><ol>
+<li>面向用户<ul>
+<li>周转时间(turnaround time)：进程从提交到完成的时间(执行(CPU)+等待(就绪+阻塞))<ul>
+<li>周转时间=完成时间-提交时间</li>
+<li>平均周转时间=∑周转时间/进程数</li>
+<li>带权周转时间=周转时间/CPU执行时间</li>
+<li>平均带权周转时间=∑平均周转时间/进程数</li>
 </ul>
 </li>
-<li>Decibels (dB): 10log<sub>10</sub>(S/N)</li>
+<li>响应时间(response time): 进程提出请求到首次被响应的时间</li>
+<li>等待时间(waiting time): 进程在就绪队列中等待的时间总和</li>
+<li>截止时间: 开始截止时间和完成截止时间</li>
 </ul>
 </li>
-<li><p>fdm带宽=信号频率 * 信号数量 + (信号数量-1) * 保护带宽</p>
+<li>面向系统<ul>
+<li>吞吐量(throughput)单位时间内完成的进程数(批处理系统)</li>
+<li>平均周转时间不是吞吐量的倒数(考虑并发)</li>
+<li>处理机利用率(cpu utilization) </li>
+<li>设备的均衡利用</li>
+</ul>
 </li>
-<li><p>CDMA译码</p>
-<ol>
-<li>resulting chip sequence = chip sequence of A + chip sequence of B + …</li>
-<li>result = resulting chip sequence * chip sequence /len(sequence)<ul>
-<li>result = 0: silence</li>
-<li>result = 1: sent bit 1</li>
-<li>result = -1: sent bit 0</li>
+<li>调度算法</li>
+<li>最优原则<ul>
+<li>最大CPU利用率 Max Cpu utilization</li>
+<li>最大吞吐量    Max throughput</li>
+<li>最短周转时间  Min turnaround time</li>
+<li>最短等待时间  Min waiting time</li>
+<li>最短响应时间  Min response time</li>
+<li>公平</li>
 </ul>
 </li>
 </ol>
-</li>
-<li><p>一些传输标准</p>
-<ul>
-<li>CCTT 2.048 Mbps标准：32个8位数据样本组成一个125us的基本帧，<br>30个传信息，2个传控制信号。</li>
-<li>DPCM(差分脉码调制)，传播的二进制数为相对差值位</li>
-<li>Delta modulation(增量调制) 位数为1</li>
+<h2 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h2><ol>
+<li>FCFS(First-Come,First-Served)先来先服务<ul>
+<li>按照作业提交的顺序形成就绪状态的先后sx</li>
+<li>当前作业占用CPU直到执行完或阻塞(非抢占)</li>
+<li>作业唤醒后(I/O完成)要等到当前作业让出CPU才执行</li>
+<li>最简单</li>
+<li>有利于长进程；有利于CPU Bound型进程；不利于短进程；不利于I/O Bound型进程</li>
 </ul>
 </li>
-<li><p>T1 carrier与E1 carrier</p>
-<ul>
-<li>T1为1.544Mbps，T1载波是把24个话音信道多路复用在一条高速信道上，每个信道包含7位的数据和1位的控制信令位，<br>此外加入一位帧同步位组成基本帧。 其中，用户的开销为24×1（控制位）+1（基本帧）=25 b 总开销为：（7+1）×24+1=193 b 因此，用户的开销所占的百分比为：25/193×100%≈13%</li>
-<li>E1载波是一种2.048Mbps速率的PCM载波。采用同步时分复用技术将30个话音信道（64K）和２个控制信道（16K）复合在一条2.048Mb/s的高速信道上。<br>  【帧结构】：每一帧开始处有8位作同步用,中间有8位用作信令,在组织30路8位数据,全帧包含256位,且每一帧用 125us时间传送。(通常我们把E1载波的一个帧分为32个时隙，一个时隙为8个bit；其中时隙0和时隙15是传输控制信令用，所以一条E1可以传30路话音。这里要注意：在路由器上的E1是不能划分时隙的，只能做2M线使用）。<ol>
-<li>E1载波支持的数据传输速率为2.048Mbps （即 256bit/125us=2.048Mbps)</li>
-<li>每个通道支持 的传输速度（或数据速率）为 64Kb/s 因为每个时隙在E1帧中占8bit，8*8k=64k，即一条E1中含有32个64K，则 2.048Mbps/32=64Kb/s</li>
-<li>E1载波开销所占比例为6.25% 。因为一帧32个时隙中，30个用于用户数据，2个用于开销。所以开销所占比例=2/32=6.25%</li>
-</ol>
-</li>
+<li>SJF(Shortest-Job-First,SPF,Shortesst-Process-First)短作业优先<ul>
+<li>对预计执行时间短的作业优先</li>
+<li>非抢占</li>
+<li>抢占式(SRT,SRTF,Shortest-Remainint-Time-First)当新来进程的剩余时间小于当前进程的运行时间则抢占</li>
+<li>HRRN(是FCFS和SJF的折中)：响应比R=(等待时间+要求执行时间)/要求执行时间</li>
+<li>只能预测其运行时间，通过之前的CPU burst预测本次的CPU burst:T<sub>n+1</sub>=αt<sub>n</sub>+(1-α)T<sub>n</sub>，t<sub>n</sub>为实际中第n次CPU burst的长度。T<sub>n</sub>为预测的下次CPU burst；0&lt;=α&lt;=1</li>
+<li></li>
 </ul>
 </li>
-<li>The cable between toll office and the end office of telephone company are known as the <em>trunk</em></li>
-<li>data link layer传输bit，每五个1后面自动加一个0<ul>
-<li>传输bit：0111101111101111110，实际bit：011110111110011111010</li>
+<li>Priority 优先权<ul>
+<li>分配给最高优先权的进程<ul>
+<li>静态优先权:创建进程时确定(进程类型、对资源要求、用户要求)</li>
+<li>动态优先权:基于某种原则</li>
 </ul>
 </li>
-<li>reminder of M(x) dividing G(x)<ul>
-<li>先在M(x)后补0(个数为G(x)的最高次+1)，再做多项式除法</li>
+<li>最小的整数≡最高的优先级</li>
+<li>SJF以下一次CPU脉冲长度作为优先数</li>
+<li>非抢占式将最高优先级的进程放在队列头</li>
+<li>抢占式需要在高优先级进程到来时中断</li>
+<li>易出现饥饿(Starvation)问题，即进程长时间得不到执行；通过动态优先级解决(老化(Aging),随时间增加进程优先权)</li>
 </ul>
 </li>
+<li>Round Robin 时间片轮转<ul>
+<li>将所有就绪进程按照FCFS排队列</li>
+<li>每次调度将CPU分配给队首执行一个时间片(time slice(几毫秒到几百毫秒))</li>
+<li>时间片结束发生时钟中断</li>
+<li>切换上下文，将当前进程送到就绪队列队尾</li>
+<li>进程未使用完时间片(阻塞)也可以让出CPU</li>
+<li>时间片过大=&gt;FIFO; 时间片过小=&gt;但必须大于上下文切换，否则开销过大</li>
+<li>设时间片长度为q，队列进程数为n，则响应时间为n*q，每个进程一次以至多q的长度占有1/n CPU,进程不会等待超过(n-1)q</li>
+<li>就绪进程越多，时间片越小(响应时间一定)</li>
+<li>一个时间片内应该能处理完用户输入</li>
+<li>平均周转时间大于SJF，但响应时间小于SJF</li>
+</ul>
+</li>
+<li>Multilevel Queue 多级队列<ul>
+<li>将就绪队列分为多个子队列，每个作业固定在一个队列(系统进程、用户交互进程、批处理进程)</li>
+<li>分为foreground(interactive 前台、交互式)-RR background(batch 后台、批处理)-FCFS</li>
+<li>固定优先级调度：先前台再后台，可能会饥饿</li>
+<li>给定时间片调度：每个队列得到一定的CPU时间，进程在给定时间内执行</li>
+</ul>
+</li>
+<li>Multilevel Feedack Queue 多级反馈队列：是时间片和优先级的综合<ul>
+<li>对短进程：提高系统吞吐量和缩短平均周转时间</li>
+<li>对I/O进程，获得较好的I/O设备利用率和缩短响应时间</li>
+<li>多个就绪队列，每个队列的优先级不同(逐级降低)，时间片不同(逐级升高)</li>
+<li>新进程进入内存后先进入队列1的末尾，按FCFS调度，若在队列1中一个时间片未执行完，则降低优先级并加入到队列2的末尾，仍然按FCFS进行，在最低级的队列中使用RR</li>
+<li>当高优先级的队列为空时才执行低优先级队列；若此时有进程进入高优先级队列，则抢占式执行新进程，并将被抢占的进程投入原队列的末尾</li>
+<li>I/O型进程：进入最高优先级队列以即时响应I/O，执行一个小时间片(只处理I/O数据)，转入阻塞</li>
+<li>CPU型进程：每次执行完时间片进入更低级队列，最终采用最大时间片来执行，减少调度次数</li>
+<li>I/O&lt;CPU:处理完I/O进程后回到原队列</li>
+<li>I/O完成时，提高优先级，时间片用完时，降低优先级</li>
+</ul>
+</li>
+<li>HRRN(Highest Response Ratio Next) 高响应比优先</li>
+<li>多处理器进程调度<h2 id="多线程调度"><a href="#多线程调度" class="headerlink" title="多线程调度"></a>多线程调度</h2></li>
+<li>本地(local)线程: 线程库调度</li>
+<li>全局(global)线程: 内核调度</li>
 </ol>
 
       
@@ -500,6 +531,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+            <a href="/tags/线程调度/" rel="tag"># 线程调度</a>
+          
+        </div>
+      
 
       
       
@@ -509,8 +548,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/11/Linux/" rel="next" title="服务器相关教程">
-                <i class="fa fa-chevron-left"></i> 服务器相关教程
+              <a href="/2018/12/22/一周总结-七/" rel="next" title="一周总结(七)">
+                <i class="fa fa-chevron-left"></i> 一周总结(七)
               </a>
             
           </div>
@@ -518,10 +557,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/31/一周总结-二/" rel="prev" title="一周总结(二)">
-                一周总结(二) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -679,7 +714,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#计算机网络"><span class="nav-number"></span> <span class="nav-text">计算机网络</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念"><span class="nav-number">2.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度算法的准则"><span class="nav-number">3.</span> <span class="nav-text">调度算法的准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调度算法"><span class="nav-number">4.</span> <span class="nav-text">调度算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程调度"><span class="nav-number">5.</span> <span class="nav-text">多线程调度</span></a></li></ol></div>
             
 
           </div>
